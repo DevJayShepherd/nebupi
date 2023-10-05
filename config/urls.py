@@ -29,12 +29,21 @@ from sesame.views import LoginView
 
 
 urlpatterns = [
+    # Django admin
     path('admin/', admin.site.urls),
+
+    # Django authentication urls
+    # signup and login with email and password, logout, password reset, etc.
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/signup/", SignUpView, name="signup"),
+    path("verify/", TemplateView.as_view(template_name="email_verification_sent.html"), name="email_verification_sent"),
+
+    # Email login (django-sesame)
+    # login with email link
     path("login/", EmailLoginView.as_view(), name="email_login"),
     path("login/auth/", LoginView.as_view(), name="login"),
-    path("dashboard/", TemplateView.as_view(template_name="dashboard.html"), name="dashboard"),
+
+    # Your stuff: custom urls go here
     path("", TemplateView.as_view(template_name="landing.html"), name="landing"),
-    path("verify/", TemplateView.as_view(template_name="email_verification_sent.html"), name="email_verification_sent"),
+    path("dashboard/", TemplateView.as_view(template_name="dashboard.html"), name="dashboard"),
 ]
