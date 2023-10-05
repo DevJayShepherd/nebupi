@@ -48,7 +48,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [env('THIRD_PARTY_APPS')]
 
 LOCAL_APPS = [
     "ready_saas",
@@ -165,5 +165,16 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = BASE_DIR + "/sent_emails"
+# https://docs.djangoproject.com/en/4.2/topics/email/
+
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+else:
+    EMAIL_BACKEND = "anymail.backends.mailjet.EmailBackend"
+    ANYMAIL = {
+        "MAILJET_API_KEY": env('MAILJET_API_KEY'),
+        "MAILJET_SECRET_KEY": env('MAILJET_SECRET_KEY'),
+    }
+
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+SERVER_EMAIL = env('SERVER_EMAIL')
