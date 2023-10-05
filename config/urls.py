@@ -35,5 +35,6 @@ urlpatterns = [
     path("login/", EmailLoginView.as_view(), name="email_login"),
     path("login/auth/", LoginView.as_view(), name="login"),
     path("dashboard/", TemplateView.as_view(template_name="dashboard.html"), name="dashboard"),
+    path("", TemplateView.as_view(template_name="landing.html"), name="landing"),
     path("verify/", TemplateView.as_view(template_name="email_verification_sent.html"), name="email_verification_sent"),
 ]
