@@ -19,10 +19,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
+from django.contrib.auth import views as auth_views
 
 # users
 from users.views import SignUpView
 from users.views import EmailLoginView
+from users.forms import AsyncPasswordResetForm
 
 # email login
 from sesame.views import LoginView
@@ -37,6 +39,7 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/signup/", SignUpView, name="signup"),
     path("verify/", TemplateView.as_view(template_name="email_verification_sent.html"), name="email_verification_sent"),
+    path('password_reset/', auth_views.PasswordResetView.as_view(form_class=AsyncPasswordResetForm), name='password_reset'),
 
     # Email login (django-sesame)
     # login with email link

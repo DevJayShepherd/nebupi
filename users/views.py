@@ -4,8 +4,13 @@ from django.urls import reverse
 from django.views.generic import FormView
 
 from .forms import CustomUserCreationForm, EmailLoginForm
+from .tasks import send_email_task
 
 import sesame.utils
+import environ
+
+
+env = environ.Env()
 
 
 def SignUpView(request):
@@ -54,18 +59,21 @@ class EmailLoginView(FormView):
 
     def send_email(self, user, link):
         """Send an email with this login link to this user."""
-        user.email_user(
-            subject="Log in to our app",
-            message=f"""\
-                Hello,
 
-                You requested that we send you a link to log in to our app:
+        subject = "Log in to our app"
+        body = f"""\
+            Hello,
 
-                    {link}
+            Open the link below to log in:
 
-                Thank you!
-                """,
-        )
+                {link}
+
+            Thank you!
+            """
+        from_email = env("DEFAULT_FROM_EMAIL")
+        to_email = user.email
+
+        send_email_task.delay(subject, body, from_email, [to_email])
 
     def email_submitted(self, email):
         user = self.get_user(email)

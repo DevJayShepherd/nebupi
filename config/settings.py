@@ -48,7 +48,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-THIRD_PARTY_APPS = [env('THIRD_PARTY_APPS')]
+THIRD_PARTY_APPS = env.list('THIRD_PARTY_APPS')
 
 LOCAL_APPS = [
     "ready_saas",
@@ -178,3 +178,15 @@ else:
 
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 SERVER_EMAIL = env('SERVER_EMAIL')
+
+
+# celery
+
+CELERY_BROKER_URL = env('REDISCLOUD_URL')
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_ACCEPT_CONTENT = ["json", "msgpack"]
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'
+CELERY_RESULT_EXTENDED = True
