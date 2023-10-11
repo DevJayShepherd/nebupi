@@ -32,9 +32,9 @@ DEBUG = env('DEBUG')
 SECRET_KEY = env('SECRET_KEY')
 
 # https://docs.djangoproject.com/en/4.2/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = [env('ALLOWED_HOSTS')]
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#csrf-trusted-origins
-CSRF_TRUSTED_ORIGINS = [env('CSRF_TRUSTED_ORIGINS')]
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS')
 
 
 # Application definition
@@ -182,7 +182,7 @@ SERVER_EMAIL = env('SERVER_EMAIL')
 
 # celery
 
-CELERY_BROKER_URL = env('REDISCLOUD_URL')
+CELERY_BROKER_URL = env('REDIS_URL')
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_ACCEPT_CONTENT = ["json", "msgpack"]
