@@ -53,7 +53,7 @@ THIRD_PARTY_APPS = env.list('THIRD_PARTY_APPS')
 LOCAL_APPS = [
     "ready_saas",
     "users",
-    "orders",
+    # "orders",
     # Your stuff: custom apps go here
 ]
 
