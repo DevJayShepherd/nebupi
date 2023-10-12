@@ -1,12 +1,54 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}Sign Up{% endblock %}
 
+{% block navbar %}{% endblock %}
+
 {% block content %}
-<h2>Sign up</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign Up</button>
-</form>
+<main>
+    <section class="container d-flex flex-column">
+        <div class="row align-items-center justify-content-center g-0 min-vh-100">
+            <div class="col-lg-5 col-md-8 py-8 py-xl-0">
+                <!-- Card -->
+                <div class="card shadow">
+                    <!-- Card body -->
+                    <div class="card-body p-6">
+                        <div class="mb-4">
+                            <a><img src="{% static 'ready_saas/images/brand/logo/logo-icon.svg' %}" class="mb-4"
+                                    alt="logo"></a>
+                            <h1 class="mb-1 fw-bold">Sign up</h1>
+                            <span>Already have an account?
+                                <a href="{% url 'login' %}" class="ms-1">Sign in</a></span>
+                        </div>
+                        <!-- Form -->
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <!-- Checkbox -->
+                            <!-- <div class="mb-3">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="agreeCheck">
+                                    <label class="form-check-label" for="agreeCheck"><span>I agree to the <a
+                                                href="terms-condition-page.html">Terms of
+                                                Service </a>and
+                                            <a href="terms-condition-page.html">Privacy Policy.</a></span></label>
+                                </div>
+                            </div> -->
+                            <div>
+                                <!-- Button -->
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">
+                                        Create Free Account
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 {% endblock %}

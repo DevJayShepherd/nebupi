@@ -1,12 +1,49 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}Login{% endblock %}
 
+{% block navbar %}{% endblock %}
+
 {% block content %}
-<h2>Log In</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log In</button>
-</form>
+
+<main>
+    <section class="container d-flex flex-column">
+        <div class="row align-items-center justify-content-center g-0 min-vh-100">
+
+            <div class="col-lg-5 col-md-8 py-8 py-xl-0">
+                <!-- Card -->
+                <div class="card shadow ">
+                    <!-- Card body -->
+                    <div class="card-body p-6">
+                        <div class="mb-4">
+                            <a><img src="{% static 'ready_saas/images/brand/logo/logo-icon.svg' %}" class="mb-4"
+                                    alt="logo-icon"></a>
+                            <h1 class="mb-1 fw-bold">Sign in</h1>
+                            <span>Don’t have an account? <a href="{% url 'signup' %}" class="ms-1">Sign up</a></span>
+                        </div>
+                        <!-- Form -->
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <!-- Checkbox -->
+                            <div class="d-lg-flex justify-content-between align-items-center mb-4">
+                                <div>
+                                    <a href="{% url 'password_reset' %}">Forgot your password?</a>
+                                </div>
+                            </div>
+                            <div>
+                                <!-- Button -->
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary ">Sign in</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 {% endblock %}

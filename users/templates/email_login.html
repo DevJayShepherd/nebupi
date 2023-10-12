@@ -1,16 +1,38 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}Login{% endblock %}
 
 {% block content %}
-{% if request.user.is_authenticated %}
-<p>You are already logged in as {{ request.user.email }}.</p>
-{% endif %}
-<form action="{{ request.path }}" method="POST">
-    {% csrf_token %}
-    <p>
-        {{ form }}
-        <input type="submit" value="Send log in link">
-    </p>
-</form>
+
+
+<section class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center g-0 min-vh-100">
+        <div class="col-lg-5 col-md-8 py-8 py-xl-0">
+            <!-- Card -->
+            <div class="card shadow">
+                <!-- Card body -->
+                <div class="card-body p-6">
+                    <div class="mb-4">
+                        <a><img src="{% static 'ready_saas/images/brand/logo/logo-icon.svg' %}" class="mb-4"
+                                alt="logo-icon" /></a>
+                        <h1 class="mb-1 fw-bold">We'll email you a login link</h1>
+                    </div>
+                    <!-- Form -->
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <!-- Button -->
+                        <div class="mb-3 d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                Send Login Link
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

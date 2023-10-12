@@ -1,7 +1,42 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}Ready SAAS{% endblock %}
 
 {% block content %}
-Landing page
+<div class="py-lg-14 py-10 position-relative bg-cover" style="background-image:
+     url(../assets/images/background/gradient-bg.png);">
+    <!-- Image -->
+    <div class="container">
+        <div class="row align-items-center mb-6">
+            <div class="col-12 col-lg-7 order-md-2">
+                <div class="mb-2 mb-md-0">
+                    <img src="{% static 'ready_saas/images/background/graphics.svg' %}" alt=""
+                        class="img-fluid mw-md-130">
+                </div>
+            </div>
+            <div class="col-12 col-lg-5 order-md-1">
+                <!-- Heading -->
+                <h1 class="display-2 mb-5 fw-bold">
+                    Ready SAAS
+                    Landing Page
+                </h1>
+                <!-- list -->
+                <ul class="list-unstyled fs-3 text-dark
+              mb-6 fw-medium">
+                    <li class="mb-1"><i class="mdi mdi-check-circle text-success
+                 me-2"></i>Further explanation or a secondary value proposition.</li>
+                </ul>
+                <!-- Buttons -->
+                <div class="mb-8 mb-lg-0">
+                    <a href="#" class="btn btn-primary me-3 mb-2 mb-lg-0">
+                        Get started for Free
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

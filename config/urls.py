@@ -24,7 +24,7 @@ from django.contrib.auth import views as auth_views
 # users
 from users.views import SignUpView
 from users.views import EmailLoginView
-from users.forms import AsyncPasswordResetForm
+from users.forms import AsyncPasswordResetForm, CustomAuthenticationForm, CustomSetPasswordForm
 
 # email login
 from sesame.views import LoginView
@@ -36,15 +36,18 @@ urlpatterns = [
 
     # Django authentication urls
     # signup and login with email and password, logout, password reset, etc.
-    path("accounts/", include("django.contrib.auth.urls")),
+    path('accounts/reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(form_class=CustomSetPasswordForm), name='password_reset_confirm'),
+    path('accounts/login/', auth_views.LoginView.as_view(authentication_form=CustomAuthenticationForm), name='login'),
     path("accounts/signup/", SignUpView, name="signup"),
+    path("accounts/", include("django.contrib.auth.urls")),
     path("verify/", TemplateView.as_view(template_name="email_verification_sent.html"), name="email_verification_sent"),
     path('password_reset/', auth_views.PasswordResetView.as_view(form_class=AsyncPasswordResetForm), name='password_reset'),
 
+
     # Email login (django-sesame)
     # login with email link
-    path("login/", EmailLoginView.as_view(), name="email_login"),
-    path("login/auth/", LoginView.as_view(), name="login"),
+    path("email/login/", EmailLoginView.as_view(), name="email_login"),
+    path("email/login/auth/", LoginView.as_view(), name="email_login_auth"),
 
     # Your stuff: custom urls go here
     path("", TemplateView.as_view(template_name="landing.html"), name="landing"),

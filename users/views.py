@@ -52,7 +52,7 @@ class EmailLoginView(FormView):
 
     def create_link(self, user):
         """Create a login link for this user."""
-        link = reverse("login")
+        link = reverse("email_login_auth")
         link = self.request.build_absolute_uri(link)
         link += sesame.utils.get_query_string(user)
         return link
