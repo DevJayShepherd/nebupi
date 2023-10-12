@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Not Found{% endblock %}
+
+{% block content %}
+<main>
+    <section class="container d-flex flex-column">
+        <div class="row">
+            <div class="offset-xl-1 col-xl-2 col-lg-12 col-md-12 col-12">
+                <div class="mt-4">
+                    
+                    <!-- theme switch -->
+                    <div class="form-check form-switch theme-switch d-none ">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-center g-0 py-lg-22 py-10">
+            <!-- Docs -->
+            <div class="offset-xl-1 col-xl-4 col-lg-6 col-md-12 col-12 text-center text-lg-start">
+                <h1 class="display-1 mb-3">500</h1>
+
+                <p class="mb-5 lead px-4 px-md-0">Oops! Something went wrong on our end. Please try again later. If the issue persists, please <a href="#" class="btn-link">Contact us</a></p>
+                <a href="{% url 'dashboard' %}" class="btn btn-primary me-2">Back to Dashboard</a>
+            </div>
+            <!-- img -->
+            <div class="offset-xl-1 col-xl-6 col-lg-6 col-md-12 col-12 mt-8 mt-lg-0">
+                <img src="{% static 'ready_saas/images/error/404-error-img.svg' %}" alt="error" class="w-100" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-xl-1 col-xl-10 col-lg-12 col-md-12 col-12">
+                <div class="row align-items-center mt-6">
+                    <div class="col-md-6 col-8">
+                    </div>
+                    <div class="col-md-6 col-4 d-flex justify-content-end">
+                        <a href="#" class="text-muted text-primary-hover me-3  "><i
+                                class="mdi mdi-facebook mdi-24px"></i></a>
+                        <a href="#" class="text-muted text-primary-hover me-3  "><i
+                                class="mdi mdi-twitter mdi-24px"></i></a>
+                        <a href="#" class="text-muted text-primary-hover"><i class="mdi mdi-github mdi-24px"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

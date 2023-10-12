@@ -52,4 +52,8 @@ urlpatterns = [
     # Your stuff: custom urls go here
     path("", TemplateView.as_view(template_name="landing.html"), name="landing"),
     path("dashboard/", TemplateView.as_view(template_name="dashboard.html"), name="dashboard"),
+
+    # For testing purposes only:
+    # path('test_404/', TemplateView.as_view(template_name='404.html')),
+    # path('test_500/', TemplateView.as_view(template_name='500.html')),
 ]
