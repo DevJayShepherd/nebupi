@@ -22,9 +22,11 @@ from django.views.generic.base import TemplateView
 from django.contrib.auth import views as auth_views
 
 # users
-from users.views import SignUpView
-from users.views import EmailLoginView
+from users.views import SignUpView, EmailLoginView
 from users.forms import AsyncPasswordResetForm, CustomAuthenticationForm, CustomSetPasswordForm
+
+# orders
+from orders.views import pricing, checkout, user_subscription, paypal_webhook_listener
 
 # email login
 from sesame.views import LoginView
@@ -49,11 +51,22 @@ urlpatterns = [
     path("email/login/", EmailLoginView.as_view(), name="email_login"),
     path("email/login/auth/", LoginView.as_view(), name="email_login_auth"),
 
-    # Your stuff: custom urls go here
+
+    # Payments and subscriptions
+    # pages
+    path("pricing/", pricing, name="pricing"),
+    path("checkout/<int:plan_id>/", checkout, name="checkout"),
+    path('user/subscription/', user_subscription, name='user_subscription'),
+    # webhooks
+    path("paypal/event", paypal_webhook_listener, name="paypal-event"),
+
+
+    # app pages
     path("", TemplateView.as_view(template_name="landing.html"), name="landing"),
     path("dashboard/", TemplateView.as_view(template_name="dashboard.html"), name="dashboard"),
 
-    # For testing purposes only:
+    # Error pages:
+    # Uncomment the two lines below for testing purposes only
     # path('test_404/', TemplateView.as_view(template_name='404.html')),
     # path('test_500/', TemplateView.as_view(template_name='500.html')),
 ]

@@ -1,0 +1,48 @@
+{
+    "id": "WH-7A4430687R668612V-91S21740MR270100Y",
+    "event_version": "1.0",
+    "create_time": "2023-10-27T20:38:22.706Z",
+    "resource_type": "subscription",
+    "resource_version": "2.0",
+    "event_type": "BILLING.SUBSCRIPTION.CREATED",
+    "summary": "Subscription created",
+    "resource": {
+        "start_time": "2023-10-27T20:38:22Z",
+        "quantity": "1",
+        "create_time": "2023-10-27T20:38:22Z",
+        "custom_id": "ee@ee.com",
+        "links": [
+            {
+                "href": "https://www.sandbox.paypal.com/webapps/billing/subscriptions?ba_token=BA-6AX88610FT899462K",
+                "rel": "approve",
+                "method": "GET"
+            },
+            {
+                "href": "https://api.sandbox.paypal.com/v1/billing/subscriptions/I-0B7VNEAVRW9B",
+                "rel": "edit",
+                "method": "PATCH"
+            },
+            {
+                "href": "https://api.sandbox.paypal.com/v1/billing/subscriptions/I-0B7VNEAVRW9B",
+                "rel": "self",
+                "method": "GET"
+            }
+        ],
+        "id": "I-0B7VNEAVRW9B",
+        "plan_overridden": false,
+        "plan_id": "P-5SV0666321220944UMU3MVKA",
+        "status": "APPROVAL_PENDING"
+    },
+    "links": [
+        {
+            "href": "https://api.sandbox.paypal.com/v1/notifications/webhooks-events/WH-7A4430687R668612V-91S21740MR270100Y",
+            "rel": "self",
+            "method": "GET"
+        },
+        {
+            "href": "https://api.sandbox.paypal.com/v1/notifications/webhooks-events/WH-7A4430687R668612V-91S21740MR270100Y/resend",
+            "rel": "resend",
+            "method": "POST"
+        }
+    ]
+}

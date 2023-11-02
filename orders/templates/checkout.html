@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<main>
+    <!-- Page header -->
+    <section class="py-lg-6 py-4 bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                    <div>
+                        <h1 class="text-white display-4 mb-0">Checkout</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Content -->
+    <section class="py-6">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 col-md-12 col-12">
+                    <!-- Card -->
+                    <div class="card  border-0 mb-3">
+                        <!-- Card body -->
+                        <div class="p-5 text-center">
+                            <div class="mb-4" style="position: absolute; margin-left: 20px; margin-right: 20px;">
+                                <a><img src="{% static 'ready_saas/images/brand/logo/logo-icon.svg' %}" class="mb-4"
+                                        alt="logo-icon" /></a>
+                            </div>
+                            <span class="badge bg-warning">Selected Plan</span>
+                            <div class="mb-5 mt-3">
+                                <h1 class="fw-bold">{{ plan.name }}</h1>
+                                <p class="mb-0 ">Access all <span class="text-dark fw-medium">premium courses,
+                                        workshops, and mobile apps.</span> Renewed monthly.
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <span class="h3 mb-0 fw-bold text-primary">$</span>
+                                <div class="display-4 fw-bold text-primary">{{ plan.price | stringformat:"d" }}</div>
+                                <span class=" align-self-end mb-1">/Monthly</span>
+                            </div>
+                        </div>
+                        <hr class="m-0">
+                        <div class="p-5">
+                            <div id="paypal-button-container"></div>
+                        </div>
+                        <!-- hr -->
+                        <hr class="m-0">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- PayPal -->
+<script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}&vault=true&intent=subscription"
+    data-sdk-integration-source="button-factory"></script>
+<script>
+    paypal.Buttons({
+        style: {
+            shape: 'rect',
+            color: 'gold',
+            layout: 'vertical',
+            label: 'subscribe'
+        },
+        createSubscription: function (data, actions) {
+            return actions.subscription.create({
+                /* Creates the subscription */
+                plan_id: '{{ plan.external_plan_id }}',
+                custom_id: "{{ request.user.email }}"
+            });
+        },
+        onApprove: function (data, actions) {
+            console.log(data)
+            window.location.href = "{% url 'dashboard' %}"
+        }
+    }).render('#paypal-button-container'); // Renders the PayPal button
+</script>
+<!-- End Paypal -->
+{% endblock %}

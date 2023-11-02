@@ -1,0 +1,35 @@
+[
+    {
+      "model": "orders.plan",
+      "pk": 1,
+      "fields": {
+        "name": "BASIC",
+        "display_name": "Basic",
+        "tier" : 1,
+        "billing_frequency": "MONTHLY",
+        "price": 10.0
+      }
+    },
+    {
+      "model": "orders.plan",
+      "pk": 2,
+      "fields": {
+        "name": "PRO",
+        "display_name": "Pro",
+        "tier" : 2,
+        "billing_frequency": "MONTHLY",
+        "price": 30.0
+      }
+    },
+    {
+      "model": "orders.plan",
+      "pk": 3,
+      "fields": {
+        "name": "PREMIUM",
+        "display_name": "Premium",
+        "tier" : 3,
+        "billing_frequency": "MONTHLY",
+        "price": 50.0
+      }
+    }
+  ]

@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Pricing{% endblock %}
+
+{% block content %}
+<main>
+    <section class="py-lg-14 py-7">
+        <div class="container ">
+            <!-- row -->
+            <div class="row ">
+                <div class="offset-xl-2 col-xl-8 offset-lg-2 col-lg-8 col-12">
+                    <!-- heading -->
+                    <div class=" text-center mb-8">
+                        <h1 class="display-3 mb-3 fw-bold">A plan for every project</h1>
+                        <p class="lead px-md-14">Lorem Ipsum, giving information on its origins, as well as a random
+                            lipsum
+                            generator.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-12">
+                    <!-- Card -->
+                    <div class="card mb-3 border shadow-none border-top-0">
+                        <div class="border-top border-4 rounded-3 border-dark-warning">
+                            <!-- Card body -->
+                            <div class="p-5">
+                                <div class="mb-5">
+                                    <h3 class="fw-bold">{{ plan_tier_1.name }}
+                                    </h3>
+                                    <p class="mb-0">
+                                        To start your learning to day you will get only
+                                        <span class="text-dark fw-medium">basic</span> access.
+                                    </p>
+                                    <h2 class="mb-3 fw-bold mt-5">${{ plan_tier_1.price | stringformat:"d" }} <span
+                                        class="fs-5 text-muted fw-normal">/Monthly</span></h2>
+                                        <!-- django url to checkout passing the corresponding plan id -->
+                                    <a href="{% url 'checkout' plan_id=plan_tier_1.id %}" class="btn btn-outline-dark-warning">Start</a>
+                                </div>
+                                <hr class="m-0" />
+                                <div class="mt-5">
+                                    <h4 class="fw-bold mb-4">
+                                        All core features, including:
+                                    </h4>
+                                    <!-- List -->
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="mb-1">
+                                            <span class="text-success me-1"><i
+                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                            <span>Only free stuff </span>
+                                        </li>
+                                        <li class="mb-1">
+                                            <span class="text-success me-1"><i
+                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                            <span><span class="fw-bold text-dark">Free </span>content
+                                            </span>
+                                        </li>
+                                        <li class="mb-1">
+                                            <span class="text-success me-1"><i
+                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                            <span><span class="fw-bold text-dark">Limited </span>features</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-12">
+                    <!-- Card -->
+                    <div class="card mb-3 border border-top-0 ">
+                        <!-- Card body -->
+                        <div class="border-top border-4 rounded-3 border-dark-primary">
+                            <div class="p-5">
+                                <div class="mb-5">
+                                    <h3 class="fw-bold">{{ plan_tier_2.name }}
+                                    </h3>
+                                    <p class="mb-0">
+                                        Access all
+                                        <span class="text-dark fw-medium">premium courses, workshops, and mobile
+                                            apps.</span>
+                                        Renewed monthly.
+                                    </p>
+                                    <h2 class="mb-3 fw-bold mt-5">${{ plan_tier_2.price | stringformat:"d" }} <span
+                                            class="fs-5 text-muted fw-normal">/Monthly</span></h2>
+                                    <a href="{% url 'checkout' plan_id=plan_tier_2.id %}" class="btn btn-primary">Start Today</a>
+                                </div>
+                                <hr class="m-0" />
+                                <div class="mt-5">
+                                    <h4 class="fw-bold mb-4">
+                                        Everything in Free, plus:
+                                    </h4>
+                                    <!-- List -->
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="mb-1">
+                                            <span class="text-success me-1"><i
+                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                            <span>Pro stuff </span>
+                                        </li>
+                                        <li class="mb-1">
+                                            <span class="text-success me-1"><i
+                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                            <span><span class="fw-bold text-dark">Pro </span>content
+                                            </span>
+                                        </li>
+                                        <li class="mb-1">
+                                            <span class="text-success me-1"><i
+                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                            <span><span class="fw-bold text-dark">Pro </span>features</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-12">
+                    <!-- Card -->
+                    <div class="card mb-3 border border-top-0 shadow-none">
+                        <!-- Card body -->
+                        <div class="border-top border-4 rounded-3 border-dark-info">
+                            <div class="p-5">
+
+                                <div class="mb-5">
+                                    <h3 class="fw-bold">{{ plan_tier_3.name }}
+                                    </h3>
+                                    <p class="mb-0">
+                                        Upto 10 member access everything. Save
+                                        <span class="text-primary fw-medium">$78 </span>per year! Renewed yearly.
+                                    </p>
+                                    <h2 class="mb-3 fw-bold mt-5">${{ plan_tier_3.price | stringformat:"d" }} <span
+                                            class="fs-5 text-muted fw-normal">/Monthly</span></h2>
+                                    <a href="{% url 'checkout' plan_id=plan_tier_3.id %}" class="btn btn-outline-dark-info">Start</a>
+                                </div>
+                                <hr class="m-0" />
+                                <div class="mt-5">
+                                    <h4 class="fw-bold mb-4">
+                                        Everything in Pro, plus:
+                                    </h4>
+                                    <!-- List -->
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="mb-1">
+                                            <span class="text-success me-1"><i
+                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                            <span>Premium stuff </span>
+                                        </li>
+                                        <li class="mb-1">
+                                            <span class="text-success me-1"><i
+                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                            <span><span class="fw-bold text-dark">Premium </span>content
+                                            </span>
+                                        </li>
+                                        <li class="mb-1">
+                                            <span class="text-success me-1"><i
+                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                            <span><span class="fw-bold text-dark">Premium </span>features</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-14 pt-lg-8">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-xl-6 col-lg-10 col-12">
+                    <div class="mb-8 pe-8">
+                        <!-- heading -->
+                        <h2 class="display-4 fw-bold mb-4">Frequently asked
+
+                            questions,
+
+                            <span class="text-primary"> answered.</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <!-- col -->
+                    <div class="mb-6 pe-lg-8">
+                        <h3 class="mb-2">What is the advantage of using this service?</h3>
+                        <p class="fs-4">Your service downtime will decrease by 50%</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <!-- col -->
+                    <div class="mb-6 pe-lg-8 ">
+                        <h3 class="mb-2">What do I need to take a course?</h3>
+                        <p class="fs-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae aspernatur autem
+                            consequatur placeat.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <!-- col -->
+                    <div class="mb-6 pe-lg-8">
+                        <h3 class="mb-2">What do I receive for taking this course?</h3>
+                        <p class="fs-4">Sit amet lorem ipsum consectetur adipisicing elit. Officiis libero quibusdam
+                            minus ipsum
+                            saepe?</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <!-- col -->
+                    <div class="mb-6 pe-lg-8">
+                        <h3 class="mb-2">What will I get if I subscribe to this Certificate?</h3>
+                        <p class="fs-4">Dolor lorem ipsum sit amet consectetur adipisicing elit. Perspiciatis magnam
+                            dolorem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-14 pt-8 ps-0 bg-light ">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="offset-xl-3 col-xl-6 col-md-12">
+                    <!-- heading -->
+                    <div class="text-center mb-8">
+                        <h2 class="display-4 fw-bold mb-3">What our customers are saying
+                        </h2>
+                        <!-- para -->
+                        <p class="fs-4">Our average call quality rating is 4.4 out of 5. That leads to happy
+                            tweets like these:</p>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <!-- col -->
+                <div class="col-md-6 col-12">
+                    <!-- card -->
+                    <div class="card mb-6 mb-lg-0">
+                        <!-- card body -->
+                        <div class="card-body p-6">
+                            <i class="mdi mdi-48px mdi-format-quote-open text-light-primary lh-1 mb-3 d-block"></i>
+
+                            <p class="fs-3 text-dark fw-semibold">"This App has created an incredibly seamless
+                                experience for app design. My mind is blown..."</p>
+
+                            <div class="d-flex mt-4 align-items-center">
+                                <img src="{% static 'ready_saas/images/avatar/avatar-1.jpg' %}" alt=""
+                                    class="avatar avatar-md rounded-circle">
+                                <div class="ms-2">
+                                    <h5 class="text-primary mb-0">Ronald Richards</h5>
+                                    <p class="mb-0 fs-6">Payments Engineer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <!-- card -->
+                    <div class="card">
+                        <!-- card body -->
+                        <div class="card-body p-6">
+                            <i class="mdi mdi-48px mdi-format-quote-open text-light-primary lh-1 mb-3 d-block"></i>
+                            <p class="fs-3 text-dark fw-semibold">"I am very satisfied with my purchase. This SAAS has gone above and beyond.
+                                I hope they are always successful."</p>
+                            <div class="d-flex mt-4 align-items-center">
+                                <img src="{% static 'ready_saas/images/avatar/avatar-9.jpg' %}" alt=""
+                                    class="avatar avatar-md rounded-circle">
+                                <div class="ms-2">
+                                    <h5 class="text-primary mb-0">Darlene Robertson</h5>
+                                    <p class="mb-0 fs-6">Senior Data Analyst</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock %}
