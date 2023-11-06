@@ -28,6 +28,9 @@ from users.forms import AsyncPasswordResetForm, CustomAuthenticationForm, Custom
 # orders
 from orders.views import pricing, checkout, user_subscription, paypal_webhook_listener
 
+# ready_saas
+from ready_saas.views import dashboard
+
 # email login
 from sesame.views import LoginView
 
@@ -63,7 +66,7 @@ urlpatterns = [
 
     # app pages
     path("", TemplateView.as_view(template_name="landing.html"), name="landing"),
-    path("dashboard/", TemplateView.as_view(template_name="dashboard.html"), name="dashboard"),
+    path("dashboard/", dashboard, name="dashboard"),
 
     # Error pages:
     # Uncomment the two lines below for testing purposes only
