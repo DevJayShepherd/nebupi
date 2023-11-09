@@ -58,7 +58,7 @@ class AsyncPasswordResetForm(PasswordResetForm):
             html_email = loader.render_to_string(html_email_template_name, context)
             email_message.attach_alternative(html_email, 'text/html')
 
-        send_email_task.delay(subject, body, from_email, [to_email])
+        send_email_task.delay(subject=subject, message=body, recipient_list=[to_email])
 
 
 class CustomSetPasswordForm(SetPasswordForm):

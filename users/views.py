@@ -7,10 +7,6 @@ from .forms import CustomUserCreationForm, EmailLoginForm
 from .tasks import send_email_task
 
 import sesame.utils
-import environ
-
-
-env = environ.Env()
 
 
 def SignUpView(request):
@@ -73,10 +69,9 @@ class EmailLoginView(FormView):
 
             Thank you!
             """
-        from_email = env("DEFAULT_FROM_EMAIL")
         to_email = user.email
 
-        send_email_task.delay(subject, body, from_email, [to_email])
+        send_email_task.delay(subject=subject, message=body, recipient_list=[to_email])
 
 
     def email_submitted(self, email):
