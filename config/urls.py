@@ -59,6 +59,7 @@ urlpatterns = [
     # pages
     path("pricing/", pricing, name="pricing"),
     path("checkout/<int:plan_id>/", checkout, name="checkout"),
+    path("thank_you/", TemplateView.as_view(template_name="thank_you.html"), name="thank_you"),
     path('user/subscription/', user_subscription, name='user_subscription'),
     # webhooks
     path("paypal/event", paypal_webhook_listener, name="paypal-event"),

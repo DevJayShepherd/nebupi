@@ -1,288 +1,310 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% load static %}
 
-{% block title %}Pricing{% endblock %}
+{% block title %}
+  Pricing
+{% endblock %}
 
 {% block content %}
-<main>
-    <section class="py-lg-14 py-7">
-        <div class="container ">
-            <!-- row -->
-            <div class="row ">
-                <div class="offset-xl-2 col-xl-8 offset-lg-2 col-lg-8 col-12">
-                    <!-- heading -->
-                    <div class=" text-center mb-8">
-                        <h1 class="display-3 mb-3 fw-bold">A plan for every project</h1>
-                        <p class="lead px-md-14">Lorem Ipsum, giving information on its origins, as well as a random
-                            lipsum
-                            generator.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12 col-12">
-                    <!-- Card -->
-                    <div class="card mb-3 border shadow-none border-top-0">
-                        <div class="border-top border-4 rounded-3 border-dark-warning">
-                            <!-- Card body -->
-                            <div class="p-5">
-                                <div class="mb-5">
-                                    <h3 class="fw-bold">{{ plan_tier_1.name }}
-                                    </h3>
-                                    <p class="mb-0">
-                                        To start your learning to day you will get only
-                                        <span class="text-dark fw-medium">basic</span> access.
-                                    </p>
-                                    <h2 class="mb-3 fw-bold mt-5">${{ plan_tier_1.price | stringformat:"d" }} <span
-                                        class="fs-5 text-muted fw-normal">/Monthly</span></h2>
-                                        <!-- django url to checkout passing the corresponding plan id -->
-                                    <a href="{% url 'checkout' plan_id=plan_tier_1.id %}" class="btn btn-outline-dark-warning">Start</a>
-                                </div>
-                                <hr class="m-0" />
-                                <div class="mt-5">
-                                    <h4 class="fw-bold mb-4">
-                                        All core features, including:
-                                    </h4>
-                                    <!-- List -->
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="mb-1">
-                                            <span class="text-success me-1"><i
-                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
-                                            <span>Only free stuff </span>
-                                        </li>
-                                        <li class="mb-1">
-                                            <span class="text-success me-1"><i
-                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
-                                            <span><span class="fw-bold text-dark">Free </span>content
-                                            </span>
-                                        </li>
-                                        <li class="mb-1">
-                                            <span class="text-success me-1"><i
-                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
-                                            <span><span class="fw-bold text-dark">Limited </span>features</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12 col-12">
-                    <!-- Card -->
-                    <div class="card mb-3 border border-top-0 ">
-                        <!-- Card body -->
-                        <div class="border-top border-4 rounded-3 border-dark-primary">
-                            <div class="p-5">
-                                <div class="mb-5">
-                                    <h3 class="fw-bold">{{ plan_tier_2.name }}
-                                    </h3>
-                                    <p class="mb-0">
-                                        Access all
-                                        <span class="text-dark fw-medium">premium courses, workshops, and mobile
-                                            apps.</span>
-                                        Renewed monthly.
-                                    </p>
-                                    <h2 class="mb-3 fw-bold mt-5">${{ plan_tier_2.price | stringformat:"d" }} <span
-                                            class="fs-5 text-muted fw-normal">/Monthly</span></h2>
-                                    <a href="{% url 'checkout' plan_id=plan_tier_2.id %}" class="btn btn-primary">Start Today</a>
-                                </div>
-                                <hr class="m-0" />
-                                <div class="mt-5">
-                                    <h4 class="fw-bold mb-4">
-                                        Everything in Free, plus:
-                                    </h4>
-                                    <!-- List -->
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="mb-1">
-                                            <span class="text-success me-1"><i
-                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
-                                            <span>Pro stuff </span>
-                                        </li>
-                                        <li class="mb-1">
-                                            <span class="text-success me-1"><i
-                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
-                                            <span><span class="fw-bold text-dark">Pro </span>content
-                                            </span>
-                                        </li>
-                                        <li class="mb-1">
-                                            <span class="text-success me-1"><i
-                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
-                                            <span><span class="fw-bold text-dark">Pro </span>features</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12 col-12">
-                    <!-- Card -->
-                    <div class="card mb-3 border border-top-0 shadow-none">
-                        <!-- Card body -->
-                        <div class="border-top border-4 rounded-3 border-dark-info">
-                            <div class="p-5">
+  <section class="pt-8 pt-md-11 pb-10 pb-md-15 bg-primary">
+    <!-- Shape -->
+    <div class="shape shape-blur-3 text-white">
+      <svg viewBox="0 0 1738 487" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0h1420.92s713.43 457.505 0 485.868C707.502 514.231 0 0 0 0z" fill="url(#paint0_linear)" />
+        <defs>
+          <linearGradient id="paint0_linear" x1="0" y1="0" x2="1049.98" y2="912.68" gradientUnits="userSpaceOnUse">
+            <stop stop-color="currentColor" stop-opacity=".075" />
+            <stop offset="1" stop-color="currentColor" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
 
-                                <div class="mb-5">
-                                    <h3 class="fw-bold">{{ plan_tier_3.name }}
-                                    </h3>
-                                    <p class="mb-0">
-                                        Upto 10 member access everything. Save
-                                        <span class="text-primary fw-medium">$78 </span>per year! Renewed yearly.
-                                    </p>
-                                    <h2 class="mb-3 fw-bold mt-5">${{ plan_tier_3.price | stringformat:"d" }} <span
-                                            class="fs-5 text-muted fw-normal">/Monthly</span></h2>
-                                    <a href="{% url 'checkout' plan_id=plan_tier_3.id %}" class="btn btn-outline-dark-info">Start</a>
-                                </div>
-                                <hr class="m-0" />
-                                <div class="mt-5">
-                                    <h4 class="fw-bold mb-4">
-                                        Everything in Pro, plus:
-                                    </h4>
-                                    <!-- List -->
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="mb-1">
-                                            <span class="text-success me-1"><i
-                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
-                                            <span>Premium stuff </span>
-                                        </li>
-                                        <li class="mb-1">
-                                            <span class="text-success me-1"><i
-                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
-                                            <span><span class="fw-bold text-dark">Premium </span>content
-                                            </span>
-                                        </li>
-                                        <li class="mb-1">
-                                            <span class="text-success me-1"><i
-                                                    class="mdi mdi-check-circle-outline fs-4"></i></span>
-                                            <span><span class="fw-bold text-dark">Premium </span>features</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Content -->
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 text-center">
+          <!-- Heading -->
+          <h1 class="display-2 text-white">Simple, fair pricing.</h1>
 
-            </div>
+          <!-- Text -->
+          <p class="lead text-white text-opacity-80 mb-6 mb-md-8">All types of businesses need access to development resources, so we give you the option to decide how much you need to use.</p>
         </div>
-    </section>
+      </div> <!-- / .row -->
+    </div> <!-- / .container -->
+  </section>
 
-    <section class="pb-14 pt-lg-8">
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <div class="col-xl-6 col-lg-10 col-12">
-                    <div class="mb-8 pe-8">
-                        <!-- heading -->
-                        <h2 class="display-4 fw-bold mb-4">Frequently asked
+  <!-- SHAPE -->
+  <div class="position-relative">
+    <div class="shape shape-bottom shape-fluid-x text-light">
+      <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor" />
+      </svg>
+    </div>
+  </div>
 
-                            questions,
+  <!-- PRICING -->
+  <section class="mt-n8 mt-md-n14">
+    <div class="container">
+      <div class="row gx-4">
+        <div class="col-12 col-md-4">
+          <!-- Card -->
+          <div class="card shadow-lg mb-6 mb-md-0">
+            <div class="card-body">
+              <!-- Preheading -->
+              <div class="text-center mb-3">
+                <span class="badge rounded-pill text-bg-primary-subtle"><span class="h6 text-uppercase">{{ plan_tier_1.name }}</span></span>
+              </div>
 
-                            <span class="text-primary"> answered.</span>
-                        </h2>
-                    </div>
+              <!-- Price -->
+              <div class="d-flex justify-content-center">
+                <span class="h2 mb-0 mt-2">$</span>
+                <span class="price display-2 mb-0" data-annual="0" data-monthly="0">{{ plan_tier_1.price|stringformat:'d' }}</span>
+                <span class="h2 align-self-end mb-1">/mo</span>
+              </div>
+
+              <!-- Text -->
+              <p class="text-center text-body-secondary mb-5">per seat</p>
+
+              <!-- List -->
+              <div class="d-flex">
+                <!-- Badge -->
+                <div class="badge badge-rounded-circle text-bg-success-subtle mt-1 me-4">
+                  <i class="fe fe-check"></i>
                 </div>
+
+                <!-- Text -->
+                <p>Core Features</p>
+              </div>
+              <div class="d-flex">
+                <!-- Badge -->
+                <div class="badge badge-rounded-circle text-bg-success-subtle mt-1 me-4">
+                  <i class="fe fe-check"></i>
+                </div>
+
+                <!-- Text -->
+                <p class="mb-5">Limited components</p>
+              </div>
+
+              <!-- Button -->
+              <a href="{% url 'checkout' plan_id=plan_tier_1.id %}" class="btn w-100 btn-primary-subtle">Start now <i class="fe fe-arrow-right ms-3"></i></a>
             </div>
-            <div class="row">
-                <div class="col-md-6 col-12">
-                    <!-- col -->
-                    <div class="mb-6 pe-lg-8">
-                        <h3 class="mb-2">What is the advantage of using this service?</h3>
-                        <p class="fs-4">Your service downtime will decrease by 50%</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-12">
-                    <!-- col -->
-                    <div class="mb-6 pe-lg-8 ">
-                        <h3 class="mb-2">What do I need to take a course?</h3>
-                        <p class="fs-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae aspernatur autem
-                            consequatur placeat.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-12">
-                    <!-- col -->
-                    <div class="mb-6 pe-lg-8">
-                        <h3 class="mb-2">What do I receive for taking this course?</h3>
-                        <p class="fs-4">Sit amet lorem ipsum consectetur adipisicing elit. Officiis libero quibusdam
-                            minus ipsum
-                            saepe?</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-12">
-                    <!-- col -->
-                    <div class="mb-6 pe-lg-8">
-                        <h3 class="mb-2">What will I get if I subscribe to this Certificate?</h3>
-                        <p class="fs-4">Dolor lorem ipsum sit amet consectetur adipisicing elit. Perspiciatis magnam
-                            dolorem.</p>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
+        <div class="col-12 col-md-4">
+          <!-- Card -->
+          <div class="card shadow-lg mb-6 mb-md-0">
+            <div class="card-body">
+              <!-- Preheading -->
+              <div class="text-center mb-3">
+                <span class="badge rounded-pill text-bg-primary-subtle"><span class="h6 text-uppercase">{{ plan_tier_2.name }}</span></span>
+              </div>
 
-    <section class="pb-14 pt-8 ps-0 bg-light ">
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <div class="offset-xl-3 col-xl-6 col-md-12">
-                    <!-- heading -->
-                    <div class="text-center mb-8">
-                        <h2 class="display-4 fw-bold mb-3">What our customers are saying
-                        </h2>
-                        <!-- para -->
-                        <p class="fs-4">Our average call quality rating is 4.4 out of 5. That leads to happy
-                            tweets like these:</p>
-                    </div>
+              <!-- Price -->
+              <div class="d-flex justify-content-center">
+                <span class="h2 mb-0 mt-2">$</span>
+                <span class="price display-2 mb-0" data-annual="29" data-monthly="49">{{ plan_tier_2.price|stringformat:'d' }}</span>
+                <span class="h2 align-self-end mb-1">/mo</span>
+              </div>
 
+              <!-- Text -->
+              <p class="text-center text-body-secondary mb-5">per seat</p>
+
+              <!-- List -->
+              <div class="d-flex">
+                <!-- Badge -->
+                <div class="badge badge-rounded-circle text-bg-success-subtle mt-1 me-4">
+                  <i class="fe fe-check"></i>
                 </div>
+
+                <!-- Text -->
+                <p>More features</p>
+              </div>
+              <div class="d-flex">
+                <!-- Badge -->
+                <div class="badge badge-rounded-circle text-bg-success-subtle mt-1 me-4">
+                  <i class="fe fe-check"></i>
+                </div>
+
+                <!-- Text -->
+                <p>More components</p>
+              </div>
+              <div class="d-flex">
+                <!-- Badge -->
+                <div class="badge badge-rounded-circle text-bg-success-subtle mt-1 me-4">
+                  <i class="fe fe-check"></i>
+                </div>
+
+                <!-- Text -->
+                <p>Speed</p>
+              </div>
+              <div class="d-flex">
+                <!-- Badge -->
+                <div class="badge badge-rounded-circle text-bg-success-subtle mt-1 me-4">
+                  <i class="fe fe-check"></i>
+                </div>
+
+                <!-- Text -->
+                <p>Support</p>
+              </div>
+
+              <!-- Button -->
+              <a href="{% url 'checkout' plan_id=plan_tier_2.id %}" class="btn w-100 btn-primary">Start with {{ plan_tier_2.name }} <i class="fe fe-arrow-right ms-3"></i></a>
             </div>
-
-
-            <div class="row">
-                <!-- col -->
-                <div class="col-md-6 col-12">
-                    <!-- card -->
-                    <div class="card mb-6 mb-lg-0">
-                        <!-- card body -->
-                        <div class="card-body p-6">
-                            <i class="mdi mdi-48px mdi-format-quote-open text-light-primary lh-1 mb-3 d-block"></i>
-
-                            <p class="fs-3 text-dark fw-semibold">"This App has created an incredibly seamless
-                                experience for app design. My mind is blown..."</p>
-
-                            <div class="d-flex mt-4 align-items-center">
-                                <img src="{% static 'ready_saas/images/avatar/avatar-1.jpg' %}" alt=""
-                                    class="avatar avatar-md rounded-circle">
-                                <div class="ms-2">
-                                    <h5 class="text-primary mb-0">Ronald Richards</h5>
-                                    <p class="mb-0 fs-6">Payments Engineer</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-12">
-                    <!-- card -->
-                    <div class="card">
-                        <!-- card body -->
-                        <div class="card-body p-6">
-                            <i class="mdi mdi-48px mdi-format-quote-open text-light-primary lh-1 mb-3 d-block"></i>
-                            <p class="fs-3 text-dark fw-semibold">"I am very satisfied with my purchase. This SAAS has gone above and beyond.
-                                I hope they are always successful."</p>
-                            <div class="d-flex mt-4 align-items-center">
-                                <img src="{% static 'ready_saas/images/avatar/avatar-9.jpg' %}" alt=""
-                                    class="avatar avatar-md rounded-circle">
-                                <div class="ms-2">
-                                    <h5 class="text-primary mb-0">Darlene Robertson</h5>
-                                    <p class="mb-0 fs-6">Senior Data Analyst</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
+        <div class="col-12 col-md-4">
+          <!-- Card -->
+          <div class="card shadow-lg mb-md-0">
+            <div class="card-body">
+              <!-- Preheading -->
+              <div class="text-center mb-3">
+                <span class="badge rounded-pill text-bg-primary-subtle"><span class="h6 text-uppercase">{{ plan_tier_3.name }}</span></span>
+              </div>
 
-</main>
+              <!-- Price -->
+              <div class="d-flex justify-content-center">
+                <span class="h2 mb-0 mt-2">$</span>
+                <span class="price display-2 mb-0" data-annual="49" data-monthly="69">{{ plan_tier_3.price|stringformat:'d' }}</span>
+                <span class="h2 align-self-end mb-1">/mo</span>
+              </div>
+
+              <!-- Text -->
+              <p class="text-center text-body-secondary mb-5">per seat</p>
+
+              <!-- List -->
+              <div class="d-flex">
+                <!-- Badge -->
+                <div class="badge badge-rounded-circle text-bg-success-subtle mt-1 me-4">
+                  <i class="fe fe-check"></i>
+                </div>
+
+                <!-- Text -->
+                <p>Even more features</p>
+              </div>
+              <div class="d-flex">
+                <!-- Badge -->
+                <div class="badge badge-rounded-circle text-bg-success-subtle mt-1 me-4">
+                  <i class="fe fe-check"></i>
+                </div>
+
+                <!-- Text -->
+                <p>Even more components</p>
+              </div>
+              <div class="d-flex">
+                <!-- Badge -->
+                <div class="badge badge-rounded-circle text-bg-success-subtle mt-1 me-4">
+                  <i class="fe fe-check"></i>
+                </div>
+
+                <!-- Text -->
+                <p>Faster speed</p>
+              </div>
+              <div class="d-flex">
+                <!-- Badge -->
+                <div class="badge badge-rounded-circle text-bg-success-subtle mt-1 me-4">
+                  <i class="fe fe-check"></i>
+                </div>
+
+                <!-- Text -->
+                <p>Better support</p>
+              </div>
+              <div class="d-flex">
+                <!-- Badge -->
+                <div class="badge badge-rounded-circle text-bg-success-subtle mt-1 me-4">
+                  <i class="fe fe-check"></i>
+                </div>
+
+                <!-- Text -->
+                <p>Guaranteed 100% uptime</p>
+              </div>
+              <div class="d-flex">
+                <!-- Badge -->
+                <div class="badge badge-rounded-circle text-bg-success-subtle mt-1 me-4">
+                  <i class="fe fe-check"></i>
+                </div>
+
+                <!-- Text -->
+                <p class="mb-5">Unlimited users</p>
+              </div>
+
+              <!-- Button -->
+              <a href="{% url 'checkout' plan_id=plan_tier_3.id %}" class="btn w-100 btn-primary-subtle">Start with {{ plan_tier_3.name }} <i class="fe fe-arrow-right ms-3"></i></a>
+            </div>
+          </div>
+        </div>
+      </div> <!-- / .row -->
+    </div> <!-- / .container -->
+  </section>
+  <section class="py-8 py-md-11">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 text-center">
+          <!-- Badge -->
+          <span class="badge rounded-pill text-bg-primary-desat-subtle mb-3"><span class="h6 text-uppercase">Enterprise</span></span>
+
+          <!-- Heading -->
+          <h2 class="mb-8">Business grade quality <span class="fw-bold text-primary-desat">for all plans</span>.</h2>
+
+        </div>
+      </div> <!-- / .row -->
+      <div class="row">
+        <div class="col-12 col-md-4 text-center">
+          <!-- Icon -->
+          <div class="icon text-primary mb-3">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" fill-rule="evenodd">
+                <path d="M0 0h24v24H0z" />
+                <path d="M7 3h10a4 4 0 110 8H7a4 4 0 110-8zm0 6a2 2 0 100-4 2 2 0 000 4z" fill="#335EEA" />
+                <path d="M7 13h10a4 4 0 110 8H7a4 4 0 110-8zm10 6a2 2 0 100-4 2 2 0 000 4z" fill="#335EEA" opacity=".3" />
+              </g>
+            </svg>
+          </div>
+
+          <!-- Heading -->
+          <h3>Built for developers</h3>
+
+          <!-- Text -->
+          <p class="text-body-secondary mb-6 mb-md-0">Ready SaaS is built to make your life easier. Variables, build tooling, documentation, and reusable components.</p>
+        </div>
+        <div class="col-12 col-md-4 text-center">
+          <!-- Icon -->
+          <div class="icon text-primary mb-3">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" fill-rule="evenodd">
+                <path d="M0 0h24v24H0z" />
+                <path d="M5.5 4h4A1.5 1.5 0 0111 5.5v1A1.5 1.5 0 019.5 8h-4A1.5 1.5 0 014 6.5v-1A1.5 1.5 0 015.5 4zm9 12h4a1.5 1.5 0 011.5 1.5v1a1.5 1.5 0 01-1.5 1.5h-4a1.5 1.5 0 01-1.5-1.5v-1a1.5 1.5 0 011.5-1.5z" fill="#335EEA" />
+                <path d="M5.5 10h4a1.5 1.5 0 011.5 1.5v7A1.5 1.5 0 019.5 20h-4A1.5 1.5 0 014 18.5v-7A1.5 1.5 0 015.5 10zm9-6h4A1.5 1.5 0 0120 5.5v7a1.5 1.5 0 01-1.5 1.5h-4a1.5 1.5 0 01-1.5-1.5v-7A1.5 1.5 0 0114.5 4z" fill="#335EEA" opacity=".3" />
+              </g>
+            </svg>
+          </div>
+
+          <!-- Heading -->
+          <h3>Designed to be modern</h3>
+
+          <!-- Text -->
+          <p class="text-body-secondary mb-6 mb-md-0">Designed with the latest design trends in mind. Ready SaaS feels modern, minimal, and beautiful.</p>
+        </div>
+        <div class="col-12 col-md-4 text-center">
+          <!-- Icon -->
+          <div class="icon text-primary mb-3">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" fill-rule="evenodd">
+                <path d="M0 0h24v24H0z" />
+                <path d="M17.272 8.685a1 1 0 111.456-1.37l4 4.25a1 1 0 010 1.37l-4 4.25a1 1 0 01-1.456-1.37l3.355-3.565-3.355-3.565zm-10.544 0L3.373 12.25l3.355 3.565a1 1 0 01-1.456 1.37l-4-4.25a1 1 0 010-1.37l4-4.25a1 1 0 011.456 1.37z" fill="#335EEA" />
+                <rect fill="#335EEA" opacity=".3" transform="rotate(15 12 12)" x="11" y="4" width="2" height="16" rx="1" />
+              </g>
+            </svg>
+          </div>
+
+          <!-- Heading -->
+          <h3>Documentation for everything</h3>
+
+          <!-- Text -->
+          <p class="text-body-secondary mb-0">We've written extensive documentation for components and tools, so you never have to reverse engineer anything.</p>
+        </div>
+      </div> <!-- / .row -->
+    </div> <!-- / .container -->
+  </section>
 {% endblock %}

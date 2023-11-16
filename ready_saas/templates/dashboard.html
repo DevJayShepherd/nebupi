@@ -1,19 +1,25 @@
-{% extends "sidebar_base.html" %}
+{% extends 'sidebar_base.html' %}
 
 {% load static %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}
+  Dashboard
+{% endblock %}
+
+{% block page_heading %}
+  Dashboard
+{% endblock %}
 
 {% block page_content %}
-<!-- Card -->
-<div class="card mb-4">
+  <!-- Card -->
+  <div class="card card-bleed shadow-light-lg mb-4">
     <!-- Card header -->
     <div class="card-header">
-        <h3 class="h4 mb-0">Dashboard</h3>
+      <h3 class="h4 mb-0">Dashboard</h3>
     </div>
     <!-- Card body -->
     <div class="card-body">
-        <div></div>
+      <div></div>
     </div>
-</div>
+  </div>
 {% endblock %}

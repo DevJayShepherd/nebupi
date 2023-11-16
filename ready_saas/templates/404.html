@@ -1,54 +1,39 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% load static %}
 
-{% block title %}Not Found{% endblock %}
+{% block title %}
+  Not Found
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
 
 {% block content %}
-<main>
-    <section class="container d-flex flex-column">
-        <div class="row">
-            <div class="offset-xl-1 col-xl-2 col-lg-12 col-md-12 col-12">
-                <div class="mt-4">
-                    
-                    <!-- theme switch -->
-                    <div class="form-check form-switch theme-switch d-none ">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row align-items-center justify-content-center g-0 py-lg-22 py-10">
-            <!-- Docs -->
-            <div class="offset-xl-1 col-xl-4 col-lg-6 col-md-12 col-12 text-center text-lg-start">
-                <h1 class="display-1 mb-3">404</h1>
+  <main>
+    <section class="section-border border-primary">
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center justify-content-center gx-0 min-vh-100">
+          <div class="col-8 col-md-6 col-lg-7 offset-md-1 order-md-2 mt-auto mt-md-0 pt-8 pb-4 py-md-11">
+            <!-- Image -->
+            <img src="{% static 'ready_saas/img/illustrations/illustration-1.png' %}" alt="" class="img-fluid" />
+          </div>
+          <div class="col-12 col-md-5 col-lg-4 order-md-1 mb-auto mb-md-0 pb-8 py-md-11">
+            <!-- Heading -->
+            <h1 class="display-3 fw-bold text-center">Uh Oh. 404</h1>
 
-                <p class="mb-5 lead px-4 px-md-0">Oops! Sorry, we couldn’t find the page you were looking for. If you
-                    think this is a
-                    problem with us, please <a href="#" class="btn-link">Contact us</a></p>
-                <a href="{% url 'dashboard' %}" class="btn btn-primary me-2">Back to Dashboard</a>
+            <!-- Text -->
+            <p class="mb-5 text-center text-body-secondary">
+              Oops! Sorry, we couldn’t find the page you were looking for. If you think this is a problem with us, please <a href="#" class="btn-link">Contact us</a>
+            </p>
+
+            <!-- Link -->
+            <div class="text-center">
+              <a href="{% url 'dashboard' %}" class="btn btn-primary me-2">Back to Dashboard</a>
             </div>
-            <!-- img -->
-            <div class="offset-xl-1 col-xl-6 col-lg-6 col-md-12 col-12 mt-8 mt-lg-0">
-                <img src="{% static 'ready_saas/images/error/404-error-img.svg' %}" alt="error" class="w-100" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="offset-xl-1 col-xl-10 col-lg-12 col-md-12 col-12">
-                <div class="row align-items-center mt-6">
-                    <div class="col-md-6 col-8">
-                    </div>
-                    <div class="col-md-6 col-4 d-flex justify-content-end">
-                        <a href="#" class="text-muted text-primary-hover me-3  "><i
-                                class="mdi mdi-facebook mdi-24px"></i></a>
-                        <a href="#" class="text-muted text-primary-hover me-3  "><i
-                                class="mdi mdi-twitter mdi-24px"></i></a>
-                        <a href="#" class="text-muted text-primary-hover"><i class="mdi mdi-github mdi-24px"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
     </section>
-</main>
+  </main>
 {% endblock %}
