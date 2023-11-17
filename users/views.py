@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate, login
 from django.urls import reverse
 from django.views.generic import FormView
 
@@ -13,14 +13,22 @@ def SignUpView(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
             # Add any post-save actions here
 
-            # TODO - send email verification
+            # Authenticate and log in the user
+            new_user = authenticate(username=user.email, password=form.cleaned_data['password1'])
+            print("new_user:", new_user)
+            if new_user is not None:
+                login(request, new_user)
 
-            return redirect('email_verification_sent')
+                # Redirect to 'next' parameter or a default view
+                next_url = request.GET.get('next') or 'dashboard'
+                print("next_url:", next_url)
+                return redirect(next_url)
     else:
         form = CustomUserCreationForm()
+
     return render(request, 'registration/signup.html', {'form': form})
 
 

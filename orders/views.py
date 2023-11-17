@@ -22,6 +22,7 @@ def pricing(request):
                                             "plan_tier_3": plan_tier_3})
 
 
+@login_required(login_url='signup')
 def checkout(request, plan_id):
     # Fetch the plan using the provided plan_id
     plan = get_object_or_404(Plan, id=plan_id)
