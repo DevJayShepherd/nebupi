@@ -52,6 +52,7 @@ LOCAL_APPS = [
     "ready_saas",
     "users",
     "orders",
+    # "waitlist", # Optional. Uncomment if you want to include the waitlist functionality
     # Your stuff: custom apps go here
 ]
 

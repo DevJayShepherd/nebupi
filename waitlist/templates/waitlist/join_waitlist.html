@@ -11,6 +11,13 @@
   <section class="pt-4 pt-md-11">
     <div class="container">
       <div class="row align-items-center">
+        {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-light" role="alert">
+                <strong>{{ message }}</strong>
+              </div>
+            {% endfor %}
+          {% endif %}
         <div class="col-12 col-md-5 col-lg-6 order-md-2">
           <!-- Image -->
           <img src="{% static 'ready_saas/img/illustrations/illustration-3.png' %}" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0" alt="..." data-aos="fade-up" data-aos-delay="100" />
@@ -27,7 +34,13 @@
 
           <!-- Buttons -->
           <div class="text-center text-md-start">
-            <a href="{% url 'signup' %}" class="btn btn-primary shadow lift me-1">Get Started <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a>
+            <form method="post">
+              <div class="d-flex mb-4">
+                {% csrf_token %}
+                <div class="form-outline me-3" style="width: 14rem">{{ form }}</div>
+                <button type="submit" class="btn btn-primary">Join Waitlist</button>
+              </div>
+            </form>
           </div>
         </div>
       </div> <!-- / .row -->
