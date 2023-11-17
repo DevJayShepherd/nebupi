@@ -70,10 +70,11 @@ urlpatterns = [
     path("dashboard/", dashboard, name="dashboard"),
 
     #============#
-    # Other Apps
+    # Optional Apps - Uncomment as needed
     #============#
     # waitlist
-    path('waitlist/', include('waitlist.urls')),
+    # path('waitlist/', include('waitlist.urls')),
+
 
     # Error pages:
     # Uncomment the two lines below for testing purposes only
