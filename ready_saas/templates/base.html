@@ -23,13 +23,14 @@
           <a class="navbar-brand" href="{% url 'landing' %}"><img src="{% static 'ready_saas/images/logo.png' %}" class="navbar-brand-img" alt="" /></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><i class="fe fe-x"></i></button>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
             <form class="d-flex" role="search">
               {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-primary d-none d-md-block">Log Out</a>
+                <a href="{% url 'logout' %}" class="btn btn-xs mb-2 btn-outline-primary d-none d-md-block">Log Out</a>
               {% else %}
-                <a href="{% url 'login' %}" class="btn btn-sm btn-outline-primary shadow-sm me-1">Sign In</a>
-                <a href="{% url 'signup' %}" class="btn btn-sm btn-primary d-none d-md-block">Sign Up</a>
+                <a href="{% url 'login' %}" class="btn btn-xs mb-2 btn-outline-primary shadow-sm me-1">Sign In</a>
+                <a href="{% url 'signup' %}" class="btn btn-xs mb-2 btn-primary d-none d-md-block">Sign Up</a>
               {% endif %}
             </form>
           </div>
@@ -43,5 +44,6 @@
     </main>
 
     <script src="{% static 'ready_saas/js/theme.bundle.js' %}"></script>
+    <script src="{% static 'ready_saas/js/vendor.bundle.js' %}"></script>
   </body>
 </html>
