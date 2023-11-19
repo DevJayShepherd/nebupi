@@ -174,10 +174,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 else:
-    EMAIL_BACKEND = 'anymail.backends.mailjet.EmailBackend'
+    EMAIL_BACKEND = 'anymail.backends.sendgrid.EmailBackend'
     ANYMAIL = {
-        'MAILJET_API_KEY': env('MAILJET_API_KEY'),
-        'MAILJET_SECRET_KEY': env('MAILJET_SECRET_KEY'),
+        'SENDGRID_API_KEY': env('SENDGRID_API_KEY'),
     }
 
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
