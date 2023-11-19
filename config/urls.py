@@ -69,11 +69,11 @@ urlpatterns = [
     path("", TemplateView.as_view(template_name="landing.html"), name="landing"),
     path("dashboard/", dashboard, name="dashboard"),
 
-    #============#
-    # Optional Apps - Uncomment as needed
-    #============#
+    # ============= #
+    # Optional Apps - Comment out as needed
+    # ============= #
     # waitlist
-    # path('waitlist/', include('waitlist.urls')),
+    path('waitlist/', include('waitlist.urls')),
 
 
     # Error pages:
