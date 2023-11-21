@@ -8,6 +8,11 @@
     <meta charset="utf-8" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
+    {% if not is_debug %}
+      {% block ga %}
+        {% include 'snippets/google_analytics.html' %}
+      {% endblock %}
+    {% endif %}
     <title>
       {% block title %}
         Ready SaaS Demo

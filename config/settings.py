@@ -95,6 +95,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'config.context_processors.is_debug',  # custom context processor to differentiate between dev and prod
+                'config.context_processors.ga_tracking_id',  # custom context processor for Google Analytics
             ],
         },
     },
