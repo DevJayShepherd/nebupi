@@ -67,7 +67,7 @@
               'X-CSRFToken': '{{ csrf_token }}'
             },
             body: JSON.stringify({
-              product_id: {{ product.product_id }}
+              product_id: '{{ product.product_id }}'
             })
           })
             .then(function (res) {
