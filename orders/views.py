@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 
 # orders
-from orders.models import Plan, Subscription
-from orders.paypal.paypal_helper import verify_paypal_webhook_event, process_paypal_webhook
+from orders.models import Plan, Subscription, Product
+from orders.paypal.paypal_helper import verify_paypal_webhook_event, process_paypal_webhook, create_order, capture_order
 
 import environ
 
@@ -31,11 +31,24 @@ def checkout(request, plan_id):
 
     context = {
         'plan': plan,
-        'paypal_client_id': paypal_client_id,
-        'external_plan_id': plan
+        'paypal_client_id': paypal_client_id
     }
 
     return render(request, 'checkout.html', context)
+
+
+@login_required(login_url='signup')
+def checkout_product(request, product_id):
+    product = get_object_or_404(Product, product_id=product_id)
+
+    paypal_client_id = env('PAYPAL_CLIENT_ID')
+
+    context = {
+        'product': product,
+        'paypal_client_id': paypal_client_id
+    }
+
+    return render(request, 'checkout_product.html', context)
 
 
 @login_required
@@ -53,6 +66,10 @@ def user_subscription(request):
     return render(request, 'user_subscription.html', context)
 
 
+'''
+PayPal
+'''
+
 @csrf_exempt
 def paypal_webhook_listener(request):
     if not verify_paypal_webhook_event(request):
@@ -62,3 +79,17 @@ def paypal_webhook_listener(request):
         print("valid PayPal webhook event received")
 
     return process_paypal_webhook(request)
+
+
+def paypal_orders_create(request):
+    print("creating paypal order")
+    response = create_order(request)
+
+    return JsonResponse(response)
+
+
+def paypal_orders_capture(request, order_id):
+    print("capturing paypal order")
+    response = capture_order(request, order_id)
+
+    return JsonResponse(response)

@@ -65,13 +65,11 @@
         },
         createSubscription: function (data, actions) {
           return actions.subscription.create({
-            /* Creates the subscription */
             plan_id: '{{ plan.external_plan_id }}',
             custom_id: '{{ request.user.email }}'
           })
         },
         onApprove: function (data, actions) {
-          console.log(data)
           window.location.href = "{% url 'thank_you' %}"
         }
       })

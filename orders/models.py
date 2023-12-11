@@ -19,6 +19,17 @@ class Plan(models.Model):
         return self.name
 
 
+class Product(models.Model):
+    product_id = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
+    display_name = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    external_product_id = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
 class SubscriptionStatus(models.TextChoices):
     ACTIVE = 'active', 'Active'
     INACTIVE = 'inactive', 'Inactive'

@@ -1,8 +1,9 @@
 # django
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 
 # orders
-from orders.models import Plan, Subscription, SubscriptionStatus, PlanFrequencyChoices
+from orders.models import Plan, Subscription, SubscriptionStatus, PlanFrequencyChoices, Product
 from orders.tasks import send_email_task
 
 # users
@@ -15,6 +16,10 @@ import datetime
 
 env = environ.Env()
 
+
+'''
+SUBSCRIPTIONS
+'''
 
 SUBSCRIPTION_ACTIVATED = 'BILLING.SUBSCRIPTION.ACTIVATED'
 SUBSCRIPTION_PAYMENT_FAILED = 'BILLING.SUBSCRIPTION.PAYMENT.FAILED'
@@ -183,6 +188,67 @@ def verify_paypal_webhook_event(request):
         return True
     return False
 
+
+'''
+ONE TIME PAYMENT
+'''
+
+def create_order(request):
+    payload = json.loads(request.body)
+    product = get_object_or_404(Product, product_id=payload['product_id'])
+
+    url = env('PAYPAL_API_URL') + "/v2/checkout/orders"
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + str(get_paypal_access_token())
+    }
+    payload = {
+        "intent": "CAPTURE",
+        "purchase_units": [
+            {
+                "amount": {
+                    "currency_code": "USD",
+                    "value": "{:.2f}".format(product.price)
+                }
+            }
+        ]
+    }
+
+    response = requests.post(url, headers=headers, data=json.dumps(payload))
+
+    return response.json()
+
+
+def capture_order(request, order_id):
+    url = env('PAYPAL_API_URL') + f"/v2/checkout/orders/{order_id}/capture"
+
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + str(get_paypal_access_token()),
+        # Uncomment one of these for negative testing in sandbox mode
+        # "PayPal-Mock-Response": '{"mock_application_codes": "INSTRUMENT_DECLINED"}',
+        # "PayPal-Mock-Response": '{"mock_application_codes": "TRANSACTION_REFUSED"}',
+        # "PayPal-Mock-Response": '{"mock_application_codes": "INTERNAL_SERVER_ERROR"}',
+    }
+
+    response = requests.post(url, headers=headers)
+
+    handle_payment_response(response)
+
+    return response.json()
+
+
+def handle_payment_response(response):
+    if response.json().get("status") == "COMPLETED":
+        # TODO handle successful payment here.
+        print("payment completed successfully")
+
+    return
+
+
+'''
+AUTH
+'''
 
 def get_paypal_access_token():
     """

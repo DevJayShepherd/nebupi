@@ -26,7 +26,10 @@ from users.views import SignUpView, EmailLoginView
 from users.forms import AsyncPasswordResetForm, CustomAuthenticationForm, CustomSetPasswordForm
 
 # orders
-from orders.views import pricing, checkout, user_subscription, paypal_webhook_listener
+from orders.views import (
+    pricing, checkout, checkout_product, user_subscription,
+    paypal_webhook_listener, paypal_orders_create, paypal_orders_capture
+)
 
 # ready_saas
 from ready_saas.views import dashboard
@@ -58,11 +61,16 @@ urlpatterns = [
     # Payments and subscriptions
     # pages
     path("pricing/", pricing, name="pricing"),
-    path("checkout/<int:plan_id>/", checkout, name="checkout"),
+    path("checkout/subscriptions/<int:plan_id>/", checkout, name="checkout"),
+    path("checkout/products/<str:product_id>/", checkout_product, name="checkout_product"),
     path("thank_you/", TemplateView.as_view(template_name="thank_you.html"), name="thank_you"),
     path('user/subscription/', user_subscription, name='user_subscription'),
-    # webhooks
+    # Paypal
+    # subscription webhooks
     path("paypal/event", paypal_webhook_listener, name="paypal-event"),
+    # one time purchase
+    path("paypal/orders/create/", paypal_orders_create, name="paypal_order_create"),
+    path("paypal/orders/<str:order_id>/capture/", paypal_orders_capture, name="paypal_order_capture"),
 
 
     # app pages
