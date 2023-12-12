@@ -1,6 +1,7 @@
 # django
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 # orders
 from orders.models import Plan, Subscription, SubscriptionStatus, PlanFrequencyChoices, Product
@@ -219,6 +220,7 @@ def create_order(request):
     return response.json()
 
 
+@login_required
 def capture_order(request, order_id):
     url = env('PAYPAL_API_URL') + f"/v2/checkout/orders/{order_id}/capture"
 
@@ -233,15 +235,19 @@ def capture_order(request, order_id):
 
     response = requests.post(url, headers=headers)
 
-    handle_payment_response(response)
+    handle_payment_response(request.user, response)
 
     return response.json()
 
 
-def handle_payment_response(response):
+def handle_payment_response(user, response):
+    '''
+    Use this method to handle the payment response from PayPal.
+    You can use the user session to identify the user and deliver their purchase, email them a thank you message, etc.
+    '''
     if response.json().get("status") == "COMPLETED":
         # TODO handle successful payment here.
-        print("payment completed successfully")
+        print("payment completed successfully for user", user.email)
 
     return
 
