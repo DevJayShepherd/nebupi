@@ -210,8 +210,10 @@ def create_order(request):
                 "amount": {
                     "currency_code": "USD",
                     "value": "{:.2f}".format(product.price)
-                }
-            }
+                },
+                "custom_id": request.user.email,
+                "reference_id": product.product_id
+            },
         ]
     }
 
@@ -246,8 +248,10 @@ def handle_payment_response(user, response):
     You can use the user session to identify the user and deliver their purchase, email them a thank you message, etc.
     '''
     if response.json().get("status") == "COMPLETED":
-        # TODO handle successful payment here.
-        print("payment completed successfully for user", user.email)
+        product_id = response.json().get("purchase_units")[0].get("reference_id")
+        product = Product.objects.get(product_id=product_id)
+
+        print(f"{user.email} just purchased {product.display_name}")
 
     return
 
