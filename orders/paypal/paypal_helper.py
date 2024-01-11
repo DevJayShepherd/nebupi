@@ -23,11 +23,11 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 # orders
-from orders.models import Plan, Subscription, SubscriptionStatus, PlanFrequencyChoices, Product
-from orders.tasks import send_email_task
+from orders.models import Plan, Subscription, SubscriptionStatus, Product
 
 # users
 from users.models import User
+from users.tasks import send_email_task
 
 import json
 import environ
@@ -57,19 +57,27 @@ PAYMENT_WEBHOOK_EVENTS_TO_HANDLE = [
 ]
 
 
-def process_paypal_webhook(request):
-    def resolve_end_date(plan):
-        if plan.billing_frequency == PlanFrequencyChoices.MONTHLY:
-            return datetime.date.today() + datetime.timedelta(days=30)
-        elif plan.billing_frequency == PlanFrequencyChoices.YEARLY:
-            return datetime.date.today() + datetime.timedelta(days=365)
-        else:
-            return None
+def get_subscription(subscription_id):
+    # Set up your PayPal API credentials
+    access_token = get_paypal_access_token()
 
+    # PayPal API endpoint to fetch subscription details
+    url =  env('PAYPAL_API_URL') + f"/v1/billing/subscriptions/{subscription_id}"
+
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {access_token}"
+    }
+    response = requests.get(url, headers=headers)
+    return response.json()
+
+
+def process_paypal_webhook(request):
 
     def process_billing_event(event):
-        # Identify the corresponding user in the database
         subscription_details = event.get('resource', {})
+
+        # Identify the corresponding user in the database
         try:
             user = User.objects.get(email=subscription_details['custom_id'])
         except User.DoesNotExist:
@@ -84,38 +92,32 @@ def process_paypal_webhook(request):
         except Plan.DoesNotExist:
             return JsonResponse({'error': 'Plan not found'}, status=404)
 
-        # Identify the corresponding subscription in the database
-        try:
-            subscription = Subscription.objects.get(user=user)
-        except Subscription.DoesNotExist:
-            if event_type == 'BILLING.SUBSCRIPTION.ACTIVATED':
-                datetime_obj = datetime.datetime.strptime(subscription_details['create_time'], "%Y-%m-%dT%H:%M:%SZ")
-                date_str = datetime_obj.strftime("%Y-%m-%d")
-
-                subscription = Subscription.objects.create(
-                    subscription_id=subscription_details['id'],
-                    status=SubscriptionStatus.ACTIVE,
-                    plan=plan,
-                    user=user,
-                    start_date=date_str,
-                    end_date=resolve_end_date(plan)
-                )
-                print("subscription created")
-                return JsonResponse({'message': 'Subscription created successfully'}, status=200)
-            else:
-                return JsonResponse({'error': 'Subscription not found'}, status=404)
-
         # Update the subscription based on the event type
-        if event_type == 'BILLING.SUBSCRIPTION.RE-ACTIVATED':
-            subscription.status = SubscriptionStatus.ACTIVE
-            message = 'Your subscription has been reactivated. Thank you.'
-            send_email_task.delay(
-                subject='Subscription Reactivated',
-                message=message,
-                recipient_list=[subscription.user.email]
+        if event_type == 'BILLING.SUBSCRIPTION.ACTIVATED':
+            # Payment is successful and the subscription is created.
+            # Provision the subscription
+
+            datetime_obj = datetime.datetime.strptime(subscription_details['create_time'], "%Y-%m-%dT%H:%M:%SZ")
+            date_str = datetime_obj.strftime("%Y-%m-%d")
+
+            subscription = Subscription.objects.create(
+                subscription_id=subscription_details['id'],
+                status=SubscriptionStatus.ACTIVE,
+                plan=plan,
+                user=user,
+                start_date=date_str,
+                end_date=subscription_details['billing_info']['next_billing_time'][:10],
             )
+            print("subscription created")
+            return JsonResponse({'message': 'Subscription created successfully'}, status=200)
         elif event_type == 'BILLING.SUBSCRIPTION.PAYMENT.FAILED':
+            # The payment failed or the customer does not have a valid payment method.
+            # The subscription becomes past_due. Notify your customer
+
             print("payment failed")
+            subscription = Subscription.objects.get(user=user)
+            subscription.status = SubscriptionStatus.PAST_DUE
+            subscription.save()
             message = f'Your payment for {subscription.plan.name} has failed. ' \
                       f'Please update your payment details to continue using our service. Thank you.'
             send_email_task.delay(
@@ -125,8 +127,6 @@ def process_paypal_webhook(request):
             )
         else:
             print("paypal event", event_type, "not handled")
-
-        subscription.save()
 
         return JsonResponse({'message': 'Subscription updated successfully'}, status=200)
 
@@ -148,8 +148,12 @@ def process_paypal_webhook(request):
         except Subscription.DoesNotExist:
             return JsonResponse({'error': 'Subscription not found'}, status=404)
 
+        # process the payment event
+        # Continue to provision the subscription as payments continue to be made.
+        # Store the status in your database and check when a user accesses your service.
+
         subscription.status = SubscriptionStatus.ACTIVE
-        subscription.end_date = resolve_end_date(subscription.plan)
+        subscription.end_date = get_subscription(subscription.subscription_id)['billing_info']['next_billing_time'][:10]
         subscription.save()
 
         return JsonResponse({'message': 'Subscription updated successfully'}, status=200)

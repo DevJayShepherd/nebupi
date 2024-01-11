@@ -29,16 +29,14 @@ import datetime
 
 @shared_task(name="Monitor Subscriptions")
 def monitor_subscriptions_task():
-    # iterate over all subscriptions
-    # if today is the end date, set status to inactive
-    # if today is the end date, send email to user
-    for subscription in Subscription.objects.filter(status=SubscriptionStatus.ACTIVE):
-        if subscription.end_date == datetime.date.today():
+    # Deactivate subscriptions that reached their end date
+    for subscription in Subscription.objects.filter(status__in=[SubscriptionStatus.ACTIVE, SubscriptionStatus.PAST_DUE]):
+        if datetime.date.today() == subscription.end_date + datetime.timedelta(days=3):
             subscription.status = SubscriptionStatus.INACTIVE
             subscription.save()
             # use celery task to send email
             send_email_task.delay(
                 subject='Subscription Ended',
-                message=f'Your subscription to {subscription.plan.name} has ended.',
+                message='Your subscription has ended.',
                 recipient_list=[subscription.user.email]
             )

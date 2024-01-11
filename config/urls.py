@@ -47,7 +47,8 @@ from users.forms import AsyncPasswordResetForm, CustomAuthenticationForm, Custom
 # orders
 from orders.views import (
     pricing, checkout, checkout_product, user_subscription,
-    paypal_webhook_listener, paypal_orders_create, paypal_orders_capture
+    paypal_webhook_listener, paypal_orders_create, paypal_orders_capture,
+    stripe_checkout_session_create, stripe_webhook_listener
 )
 
 # ready_saas
@@ -90,6 +91,10 @@ urlpatterns = [
     # one time purchase
     path("paypal/orders/create/", paypal_orders_create, name="paypal_order_create"),
     path("paypal/orders/<str:order_id>/capture/", paypal_orders_capture, name="paypal_order_capture"),
+    # Stripe
+    path("stripe/checkout-session/create/", stripe_checkout_session_create, name="stripe_checkout_session_create"),
+    # subscription webhooks
+    path("stripe/webhook", stripe_webhook_listener, name="stripe-event"),
 
 
     # app pages

@@ -26,10 +26,11 @@
       <div class="row justify-content-center">
         <div class="col-12 col-md-10 col-lg-8 text-center">
           <!-- Heading -->
-          <h1 class="display-2 text-white">Simple, fair pricing.</h1>
+          <h1 class="display-2 text-white">Ready SaaS Demo Pricing Page</h1>
 
           <!-- Text -->
-          <p class="lead text-white text-opacity-80 mb-6 mb-md-8">All types of businesses need access to development resources, so we give you the option to decide how much you need to use.</p>
+          <p class="lead text-white text-opacity-80 mb-6 mb-md-8">Test out both Stripe and Paypal checkout flows</p>
+          <p class="lead text-white text-opacity-80 mb-6 mb-md-8">Both payment gateways are fully supported and you can choose either when setting up your SaaS</p>
         </div>
       </div> <!-- / .row -->
     </div> <!-- / .container -->
@@ -65,7 +66,7 @@
               </div>
 
               <!-- Text -->
-              <p class="text-center text-body-secondary mb-5">per seat</p>
+              <p class="text-center text-body-secondary mb-5"></p>
 
               <!-- List -->
               <div class="d-flex">
@@ -88,7 +89,15 @@
               </div>
 
               <!-- Button -->
-              <a href="{% url 'checkout' plan_id=plan_tier_1.id %}" class="btn w-100 btn-primary-subtle">Start now <i class="fe fe-arrow-right ms-3"></i></a>
+              {% if plan_tier_1.payment_gateway == 'PAYPAL' %}
+                <a href="{% url 'checkout' plan_id=plan_tier_1.id %}" class="btn w-100 btn-primary-subtle">PAYPAL CHECKOUT <i class="fe fe-arrow-right ms-3"></i></a>
+              {% else %}
+                <form action="{% url 'stripe_checkout_session_create' %}" method="POST">
+                  {% csrf_token %}
+                  <input type="hidden" name="priceId" value="{{ plan_tier_1.external_plan_id }}" />
+                  <button type="submit" class="btn w-100 btn-primary">STRIPE CHECKOUT <i class="fe fe-arrow-right ms-3"></i></button>
+                </form>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -109,7 +118,7 @@
               </div>
 
               <!-- Text -->
-              <p class="text-center text-body-secondary mb-5">per seat</p>
+              <p class="text-center text-body-secondary mb-5"></p>
 
               <!-- List -->
               <div class="d-flex">
@@ -150,7 +159,16 @@
               </div>
 
               <!-- Button -->
-              <a href="{% url 'checkout' plan_id=plan_tier_2.id %}" class="btn w-100 btn-primary">Start with {{ plan_tier_2.name }} <i class="fe fe-arrow-right ms-3"></i></a>
+              {% if plan_tier_2.payment_gateway == 'PAYPAL' %}
+                <a href="{% url 'checkout' plan_id=plan_tier_2.id %}" class="btn w-100 btn-primary">PAYPAL CHECKOUT <i class="fe fe-arrow-right ms-3"></i></a>
+              {% else %}
+                <form action="{% url 'stripe_checkout_session_create' %}" method="POST">
+                  {% csrf_token %}
+                  <input type="hidden" name="priceId" value="{{ plan_tier_2.external_plan_id }}" />
+                  <button type="submit" class="btn w-100 btn-primary">STRIPE CHECKOUT <i class="fe fe-arrow-right ms-3"></i></button>
+                </form>
+                <p>Use the following card number at checkout to test 4242 4242 4242 4242</p>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -171,7 +189,7 @@
               </div>
 
               <!-- Text -->
-              <p class="text-center text-body-secondary mb-5">per seat</p>
+              <p class="text-center text-body-secondary mb-5"></p>
 
               <!-- List -->
               <div class="d-flex">
@@ -230,7 +248,15 @@
               </div>
 
               <!-- Button -->
-              <a href="{% url 'checkout' plan_id=plan_tier_3.id %}" class="btn w-100 btn-primary-subtle">Start with {{ plan_tier_3.name }} <i class="fe fe-arrow-right ms-3"></i></a>
+              {% if plan_tier_3.payment_gateway == 'PAYPAL' %}
+                <a href="{% url 'checkout' plan_id=plan_tier_3.id %}" class="btn w-100 btn-primary-subtle">PAYPAL CHECKOUT <i class="fe fe-arrow-right ms-3"></i></a>
+              {% else %}
+                <form action="{% url 'stripe_checkout_session_create' %}" method="POST">
+                  {% csrf_token %}
+                  <input type="hidden" name="priceId" value="{{ plan_tier_3.external_plan_id }}" />
+                  <button type="submit" class="btn w-100 btn-primary">STRIPE CHECKOUT <i class="fe fe-arrow-right ms-3"></i></button>
+                </form>
+              {% endif %}
             </div>
           </div>
         </div>

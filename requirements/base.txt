@@ -7,6 +7,7 @@ whitenoise==6.5.0  # https://github.com/evansd/whitenoise
 # dj-database-url==2.1.0
 celery==5.3.4 # http://docs.celeryproject.org/en/2.5/django/first-steps-with-django.html
 redis==5.0.1 # https://github.com/redis/redis-py
+stripe==7.10.0 # https://stripe.com/docs
 
 # Django
 # ------------------------------------------------------------------------------

@@ -24,7 +24,7 @@ from django.test import TestCase
 from users.models import User
 
 # orders
-from orders.models import Plan, Subscription, SubscriptionStatus, PlanFrequencyChoices
+from orders.models import Plan, Subscription, SubscriptionStatus
 from orders.tasks import monitor_subscriptions_task
 
 from datetime import date, timedelta
@@ -43,10 +43,14 @@ class MonitorSubscriptionsTaskTests(TestCase):
             email='testuser2@asdf.com',
             password='12345'
         )
+        user3 = User.objects.create_user(
+            email='testuser3@asdf.com',
+            password='12345'
+        )
+
         plan = Plan.objects.create(name="Test Plan",
                                    price=10.00,
                                    tier=1,
-                                   billing_frequency=PlanFrequencyChoices.MONTHLY,
                                    external_plan_id="test_plan")
 
         # Create a subscription that ends today
@@ -69,20 +73,41 @@ class MonitorSubscriptionsTaskTests(TestCase):
             status=SubscriptionStatus.ACTIVE
         )
 
-    @patch('users.tasks.send_email_task.delay')
-    def test_subscription_ending_today(self, mock_send_email):
+        # create a subscription that ended 3 days ago
+        self.subscription_3_days_ago = Subscription.objects.create(
+            subscription_id="test3",
+            user=user3,
+            plan=plan,
+            start_date=date.today() - timedelta(days=33),
+            end_date=date.today() - timedelta(days=3),
+            status=SubscriptionStatus.ACTIVE
+        )
+
+
+    def test_subscription_ending_today(self):
         monitor_subscriptions_task()
 
         # Refresh the subscription from the database
         self.subscription_today.refresh_from_db()
 
+        # verify that the status is still ACTIVE
+        self.assertEqual(self.subscription_today.status, SubscriptionStatus.ACTIVE)
+
+
+    @patch('users.tasks.send_email_task.delay')
+    def test_subscription_ended_3_days_ago(self, mock_send_email):
+        monitor_subscriptions_task()
+
+        # Refresh the subscription from the database
+        self.subscription_3_days_ago.refresh_from_db()
+
         # Check if the status has been updated to INACTIVE
-        self.assertEqual(self.subscription_today.status, SubscriptionStatus.INACTIVE)
+        self.assertEqual(self.subscription_3_days_ago.status, SubscriptionStatus.INACTIVE)
 
         # Check if the email sending task was called
         mock_send_email.assert_called_once_with(
             subject='Subscription Ended',
-            message=f'Your subscription to {self.subscription_today.plan.name} has ended.',
-            recipient_list=[self.subscription_today.user.email]
+            message='Your subscription has ended.',
+            recipient_list=[self.subscription_3_days_ago.user.email]
         )
         mock_send_email.assert_called_once()

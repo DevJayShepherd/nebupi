@@ -21,7 +21,7 @@ limitations under the License.
 from django.test import TestCase, RequestFactory
 
 # orders
-from orders.models import Subscription, Plan, PlanFrequencyChoices, SubscriptionStatus
+from orders.models import Subscription, Plan, SubscriptionStatus
 from orders.paypal.paypal_helper import process_paypal_webhook
 
 # users
@@ -56,8 +56,7 @@ class ProcessPaypalWebhookTests(TestCase):
             name="Test Plan Monthly",
             price=10,
             tier=1,
-            external_plan_id="monthly_plan_id",
-            billing_frequency=PlanFrequencyChoices.MONTHLY
+            external_plan_id="monthly_plan_id"
         )
         self.subscription_monthly = Subscription.objects.create(
             subscription_id="test123",
@@ -71,8 +70,7 @@ class ProcessPaypalWebhookTests(TestCase):
             name="Test Plan Yearly",
             price=10,
             tier=1,
-            external_plan_id="yearly_plan_id",
-            billing_frequency=PlanFrequencyChoices.YEARLY
+            external_plan_id="yearly_plan_id"
         )
         self.subscription_yearly = Subscription.objects.create(
             subscription_id="test2",
@@ -112,11 +110,12 @@ class ProcessPaypalWebhookTests(TestCase):
 
     def test_subscription_not_found(self):
         data = {
-            "event_type": "BILLING.SUBSCRIPTION.RE-ACTIVATED",
+            "event_type": "PAYMENT.SALE.COMPLETED",
             "resource": {
                 "id": "nonexistent123",
                 "plan_id": "monthly_plan_id",
-                "custom_id": "new_subscriber1@asdf.com"
+                "status": "ACTIVE",
+                "custom": "new_subscriber1@asdf.com"
             }
         }
         request = self.factory.post('/webhook-endpoint/',
@@ -127,46 +126,36 @@ class ProcessPaypalWebhookTests(TestCase):
         self.assertEqual(json.loads(response.content), {'error': 'Subscription not found'})
 
 
-    def test_different_subscriptions_activated(self):
-        def test_subscription_is_activated(data):
-            request = self.factory.post('/webhook-endpoint/',
-                                        data=json.dumps(data),
-                                        content_type='application/json')
-            response = process_paypal_webhook(request)
+    def test_subscription_activated(self):
+        end_date = datetime.date(2024, 11, 27)
 
-            # verify that the subscription is created
-            subscription = Subscription.objects.get(subscription_id=data['resource']['id'])
-            duration_days = 30 if subscription.plan.billing_frequency == 'MONTHLY' else 365
-            self.assertEqual(subscription.status, SubscriptionStatus.ACTIVE)
-            self.assertEqual(subscription.plan, Plan.objects.get(external_plan_id=data['resource']['plan_id']))
-            self.assertEqual(subscription.user, User.objects.get(email=data['resource']['custom_id']))
-            self.assertEqual(subscription.start_date, datetime.date(2023, 10, 27))
-            self.assertEqual(subscription.end_date, datetime.date.today() + datetime.timedelta(days=duration_days))
-            self.assertEqual(response.status_code, 200)
-
-
-        data_monthly = {
+        data = {
             "event_type": "BILLING.SUBSCRIPTION.ACTIVATED",
             "resource": {
                 "id": "new_subscription_m_id",
                 "plan_id": "monthly_plan_id",
                 "custom_id": "new_subscriber1@asdf.com",
                 "create_time": "2023-10-27T20:41:15Z",
+                "billing_info": {
+                    "next_billing_time": end_date.strftime("%Y-%m-%d") + "T10:00:00Z"
+                }
             }
         }
 
-        data_yearly = {
-            "event_type": "BILLING.SUBSCRIPTION.ACTIVATED",
-            "resource": {
-                "id": "new_subscription_y_id",
-                "plan_id": "yearly_plan_id",
-                "custom_id": "new_subscriber2@asdf.com",
-                "create_time": "2023-10-27T20:41:15Z",
-            }
-        }
+        request = self.factory.post('/webhook-endpoint/',
+                                    data=json.dumps(data),
+                                    content_type='application/json')
+        response = process_paypal_webhook(request)
 
-        test_subscription_is_activated(data_monthly)
-        test_subscription_is_activated(data_yearly)
+        # verify that the subscription is created
+        subscription = Subscription.objects.get(subscription_id=data['resource']['id'])
+
+        self.assertEqual(subscription.status, SubscriptionStatus.ACTIVE)
+        self.assertEqual(subscription.plan, Plan.objects.get(external_plan_id=data['resource']['plan_id']))
+        self.assertEqual(subscription.user, User.objects.get(email=data['resource']['custom_id']))
+        self.assertEqual(subscription.start_date, datetime.date(2023, 10, 27))
+        self.assertEqual(subscription.end_date, end_date)
+        self.assertEqual(response.status_code, 200)
 
 
     def test_plan_not_found(self):
@@ -186,7 +175,16 @@ class ProcessPaypalWebhookTests(TestCase):
         self.assertEqual(json.loads(response.content), {'error': 'Plan not found'})
 
 
-    def test_payment_sale_completed(self):
+    @patch('orders.paypal.paypal_helper.get_subscription')
+    def test_payment_sale_completed(self, mock_get_subscription):
+        end_date = datetime.date(2023, 10, 27)
+
+        mock_get_subscription.return_value = {
+            "billing_info": {
+                "next_billing_time": end_date.strftime("%Y-%m-%d") + "T10:00:00Z"
+            }
+        }
+
         data = {
             "event_type": "PAYMENT.SALE.COMPLETED",
             "resource": {
@@ -202,7 +200,7 @@ class ProcessPaypalWebhookTests(TestCase):
         response = process_paypal_webhook(request)
         self.subscription_monthly.refresh_from_db()
         self.assertEqual(self.subscription_monthly.status, "active")
-        self.assertEqual(self.subscription_monthly.end_date, datetime.date.today() + datetime.timedelta(days=30))
+        self.assertEqual(self.subscription_monthly.end_date, end_date)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(json.loads(response.content), {'message': 'Subscription updated successfully'})
 
@@ -223,4 +221,5 @@ class ProcessPaypalWebhookTests(TestCase):
                                     content_type='application/json')
         process_paypal_webhook(request)
         self.subscription_monthly.refresh_from_db()
+        self.assertEqual(self.subscription_monthly.status, "past due")
         mock_send_email.assert_called_once()

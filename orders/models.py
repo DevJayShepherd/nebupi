@@ -21,9 +21,9 @@ from django.db import models
 from users.models import User
 
 
-class PlanFrequencyChoices(models.TextChoices):
-    MONTHLY = 'MONTHLY'
-    YEARLY = 'YEARLY'
+class PaymentGatewayChoices(models.TextChoices):
+    STRIPE = 'STRIPE'
+    PAYPAL = 'PAYPAL'
 
 
 class Plan(models.Model):
@@ -31,8 +31,8 @@ class Plan(models.Model):
     display_name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     tier = models.PositiveIntegerField()
-    billing_frequency = models.CharField(max_length=10, choices=PlanFrequencyChoices.choices)
     external_plan_id = models.CharField(max_length=255)
+    payment_gateway = models.CharField(max_length=10, choices=PaymentGatewayChoices.choices)
 
     def __str__(self):
         return self.name
@@ -51,6 +51,7 @@ class Product(models.Model):
 class SubscriptionStatus(models.TextChoices):
     ACTIVE = 'active', 'Active'
     INACTIVE = 'inactive', 'Inactive'
+    PAST_DUE = 'past due', 'Past Due'
 
 
 class Subscription(models.Model):
