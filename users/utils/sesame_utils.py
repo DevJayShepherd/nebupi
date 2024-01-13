@@ -17,23 +17,16 @@ limitations under the License.
 '''
 
 
-from django.contrib import admin
+# django
+from django.urls import reverse
 
-from .models import Plan, Subscription, Product
-
-
-class PlanAdmin(admin.ModelAdmin):
-    list_display = ('display_name', 'price', 'tier', 'payment_gateway')
+# sesame
+import sesame.utils
 
 
-class SubscriptionAdmin(admin.ModelAdmin):
-    list_display = ('user', 'plan', 'start_date', 'end_date', 'status')
-
-
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ('display_name', 'price')
-
-
-admin.site.register(Plan, PlanAdmin)
-admin.site.register(Subscription, SubscriptionAdmin)
-admin.site.register(Product, ProductAdmin)
+def create_login_link(request, user):
+    """Create a login link for this user."""
+    link = reverse("email_login_auth")
+    link = request.build_absolute_uri(link)
+    link += sesame.utils.get_query_string(user)
+    return link

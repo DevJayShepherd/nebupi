@@ -22,10 +22,11 @@ from django.contrib.auth import get_user_model, authenticate, login
 from django.urls import reverse
 from django.views.generic import FormView
 
+# users
 from .forms import CustomUserCreationForm, EmailLoginForm
 from .tasks import send_email_task
+from .utils.sesame_utils import create_login_link
 
-import sesame.utils
 
 
 def SignUpView(request):
@@ -76,11 +77,7 @@ class EmailLoginView(FormView):
 
 
     def create_link(self, user):
-        """Create a login link for this user."""
-        link = reverse("email_login_auth")
-        link = self.request.build_absolute_uri(link)
-        link += sesame.utils.get_query_string(user)
-        return link
+        return create_login_link(self.request, user)
 
 
     def send_email(self, user, link):

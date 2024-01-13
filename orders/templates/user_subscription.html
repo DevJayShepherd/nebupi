@@ -16,7 +16,6 @@
     <div class="card-header d-lg-flex justify-content-between align-items-center">
       <div class="mb-3 mb-lg-0">
         <h3 class="mb-0">My Subscription</h3>
-        <p class="mb-0">Here is list of package/product that you have subscribed.</p>
       </div>
     </div>
     <!-- Card body -->
@@ -26,16 +25,13 @@
           <div class="row mb-4">
             <div class="col-lg-6 col-md-8 col-7 mb-2 mb-lg-0">
               {% if subscription.is_active %}
-                <span class="badge bg-success ms-2">Active</span>
+                <span class="badge bg-success ms-2">{{ subscription.status }}</span>
               {% else %}
-                <span class="badge bg-danger ms-2">Inactive</span>
+                <span class="badge bg-danger ms-2">{{ subscription.status }}</span>
               {% endif %}
             </div>
             <div class="col-lg-3 col-md-4 col-5 mb-2 mb-lg-0">
               <span>Next billing date: <span style="color: black">{{ subscription.end_date }}</span></span>
-            </div>
-            <div class="col-lg-3 col-md-12 col-12 d-lg-flex align-items-start justify-content-end">
-              <a href="#" class="btn btn-outline-primary btn-sm">Change Plan</a>
             </div>
           </div>
           <!-- Pricing data -->

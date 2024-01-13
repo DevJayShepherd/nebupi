@@ -28,6 +28,7 @@ from orders.models import Plan, Subscription, SubscriptionStatus
 # users
 from users.models import User
 from users.tasks import send_email_task
+from users.utils.sesame_utils import create_login_link
 
 import json
 import stripe
@@ -101,6 +102,15 @@ def process_webhook(request):
             user=user,
             start_date=datetime.datetime.fromtimestamp(subscription['current_period_start']),
             end_date=datetime.datetime.fromtimestamp(subscription['current_period_end']),
+        )
+
+        # build login link for user
+        link = create_login_link(request, user)
+        # send email to customer saying thank you and providing a link to login to the app
+        send_email_task.delay(
+            subject='Thank you!',
+            message='Thank you for subscribing! Click the link to access your account. {}'.format(link),
+            recipient_list=[user.email]
         )
     elif event.type == 'invoice.paid':
         # Continue to provision the subscription as payments continue to be made.
