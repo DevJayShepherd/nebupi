@@ -18,16 +18,21 @@
         <div class="col-12 col-md-7 col-lg-6 order-md-1" data-aos="fade-up">
           <!-- Heading -->
           <h1 class="display-3 text-center text-md-start">
-            Welcome to <span class="text-primary">Ready SaaS Demo</span>. <br />
-            Develop anything.
+            <span class="text-primary">Ready SaaS</span><br />
+            Starter project
           </h1>
 
           <!-- Text -->
-          <p class="lead text-center text-md-start text-body-secondary mb-6 mb-lg-8">Build your next Startup FAST.</p>
+          <p class="lead text-center text-md-start text-body-secondary mb-6 mb-lg-8">A Django starter project that includes everything you need to launch your SaaS startup super fast.</p>
+          <p class="lead text-center text-md-start text-body-secondary mb-6 mb-lg-8">User authentication, Stripe and PayPal integrations, email notifications, background tasks, and more all pre-configured and ready to go.</p>
+          <p class="lead text-center text-md-start text-body-secondary mb-6 mb-lg-8">Ready SaaS is designed to be edited and extended to fit your exact needs, making it the perfect starting point for your next big project.</p>
 
           <!-- Buttons -->
+          <div class="text-center text-md-start mb-2">
+            <a href="https://www.readysaas.app" target="_blank" class="btn btn-primary shadow lift me-1">Get Ready SaaS now! <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a>
+          </div>
           <div class="text-center text-md-start">
-            <a href="{% url 'pricing' %}" class="btn btn-primary shadow lift me-1">Get Started <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a>
+            <a href="#features" class="btn btn-outline-primary shadow lift me-1">See All Features <i class="fe fe-arrow-down d-none d-md-inline ms-3"></i></a>
           </div>
         </div>
       </div> <!-- / .row -->
@@ -35,8 +40,14 @@
   </section>
 
   <!-- FEATURES -->
-  <section class="py-8 py-md-11 border-bottom">
+  <section id="features" class="py-8 py-md-11 border-bottom">
     <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-7 text-center" data-aos="fade-up">
+          <!-- Heading -->
+          <h2 class="fw-bold mb-9">Explore all features</h2>
+        </div>
+      </div>
       <div class="row">
         <div class="col-12 col-md-4" data-aos="fade-up">
           <!-- Icon -->
@@ -51,10 +62,13 @@
           </div>
 
           <!-- Heading -->
-          <h3>Built for developers</h3>
+          <h3>Pre-Built Functional Pages</h3>
 
           <!-- Text -->
-          <p class="text-body-secondary mb-6 mb-md-0">Ready SaaS is designed to speed up development time, and bring joy to developers.</p>
+          <p class="text-body-secondary mb-6 mb-md-0">Jumpstart your project with essential pages like a landing page, pricing page, checkout, and a user-friendly dashboard, all designed to get you started fast.</p>
+          <p class="mt-4"><a href="{% url 'dashboard' %}" class="">Dashboard <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
+          <p><a href="{% url 'user_subscription' %}" class="">User subscription <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
+          <p><a href="{% url 'join_waitlist' %}" class="">Waitlist <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
         </div>
         <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="50">
           <!-- Icon -->
@@ -69,10 +83,11 @@
           </div>
 
           <!-- Heading -->
-          <h3>Modular</h3>
+          <h3>Payment Integrations</h3>
 
           <!-- Text -->
-          <p class="text-body-secondary mb-6 mb-md-0">You can pick the bits and pieces that are useful to you.</p>
+          <p class="text-body-secondary mb-6 mb-md-0">Purchase and subscription flows fully integrated with Stripe and PayPal, ensuring your payment systems are robust and reliable.</p>
+          <p class="mt-4"><a href="{% url 'pricing' %}" class="">Pricing page <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
         </div>
         <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
           <!-- Icon -->
@@ -87,10 +102,14 @@
           </div>
 
           <!-- Heading -->
-          <h3>Documentation</h3>
+          <h3>User Authentication</h3>
 
           <!-- Text -->
-          <p class="text-body-secondary mb-0">Trying to make your life easier every step of the way.</p>
+          <p class="text-body-secondary mb-0">A secure and scalable user authentication system is built-in, allowing you to manage user access and data with confidence.</p>
+          <p class="mt-4"><a href="{% url 'signup' %}" class="">Sign up <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
+          <p><a href="{% url 'login' %}" class="">Login <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
+          <p><a href="{% url 'email_login' %}" class="">Magic Login Link <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
+          <p><a href="{% url 'password_reset' %}" class="">Forgot Password <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
         </div>
       </div> <!-- / .row -->
     </div> <!-- / .container -->
