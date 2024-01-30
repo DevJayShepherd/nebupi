@@ -35,7 +35,10 @@ import stripe
 import environ
 import datetime
 
-env = environ.Env()
+env = environ.Env(
+    # set casting, default value
+    STRIPE_SECRET_KEY=(str, 'DEFAULT')
+)
 
 stripe.api_key = env('STRIPE_SECRET_KEY')
 
