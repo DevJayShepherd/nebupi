@@ -6,7 +6,6 @@
         "name": "BASIC",
         "display_name": "Basic",
         "tier" : 1,
-        "billing_frequency": "MONTHLY",
         "price": 10.0,
         "payment_gateway": "PAYPAL"
       }
@@ -18,7 +17,6 @@
         "name": "PRO",
         "display_name": "Pro",
         "tier" : 2,
-        "billing_frequency": "MONTHLY",
         "price": 30.0,
         "payment_gateway": "PAYPAL"
       }
@@ -30,7 +28,6 @@
         "name": "PREMIUM",
         "display_name": "Premium",
         "tier" : 3,
-        "billing_frequency": "MONTHLY",
         "price": 50.0,
         "payment_gateway": "STRIPE"
       }
