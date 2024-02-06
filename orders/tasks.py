@@ -16,6 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 '''
 
+# django
+from django.template.loader import get_template
 
 # orders
 from .models import Subscription, SubscriptionStatus
@@ -35,8 +37,10 @@ def monitor_subscriptions_task():
             subscription.status = SubscriptionStatus.INACTIVE
             subscription.save()
             # use celery task to send email
+            email_txt = get_template('emails/subscription_expired_email.txt')
+            message = email_txt.render({})
             send_email_task.delay(
                 subject='Subscription Ended',
-                message='Your subscription has ended.',
+                message=message,
                 recipient_list=[subscription.user.email]
             )

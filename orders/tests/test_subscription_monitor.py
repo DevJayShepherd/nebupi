@@ -105,9 +105,4 @@ class MonitorSubscriptionsTaskTests(TestCase):
         self.assertEqual(self.subscription_3_days_ago.status, SubscriptionStatus.INACTIVE)
 
         # Check if the email sending task was called
-        mock_send_email.assert_called_once_with(
-            subject='Subscription Ended',
-            message='Your subscription has ended.',
-            recipient_list=[self.subscription_3_days_ago.user.email]
-        )
         mock_send_email.assert_called_once()

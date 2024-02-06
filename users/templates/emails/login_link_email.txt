@@ -1,0 +1,7 @@
+Hello,
+
+Open the link below to log in:
+
+{{link}}
+
+Thank you!

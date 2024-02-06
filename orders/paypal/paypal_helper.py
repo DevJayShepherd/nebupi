@@ -21,6 +21,7 @@ limitations under the License.
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.template.loader import get_template
 
 # orders
 from orders.models import Plan, Subscription, SubscriptionStatus, Product
@@ -118,8 +119,8 @@ def process_paypal_webhook(request):
             subscription = Subscription.objects.get(user=user)
             subscription.status = SubscriptionStatus.PAST_DUE
             subscription.save()
-            message = f'Your payment for {subscription.plan.name} has failed. ' \
-                      f'Please update your payment details to continue using our service. Thank you.'
+            email_txt = get_template('emails/payment_failed_email.txt')
+            message = email_txt.render({})
             send_email_task.delay(
                 subject='Payment Failed',
                 message=message,

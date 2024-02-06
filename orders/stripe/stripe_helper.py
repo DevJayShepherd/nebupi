@@ -21,6 +21,7 @@ limitations under the License.
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
+from django.template.loader import get_template
 
 # orders
 from orders.models import Plan, Subscription, SubscriptionStatus
@@ -109,10 +110,13 @@ def process_webhook(request):
 
         # build login link for user
         link = create_login_link(request, user)
+
         # send email to customer saying thank you and providing a link to login to the app
+        email_txt = get_template('emails/new_subscription_login_link.txt')
+        message = email_txt.render({'link': link})
         send_email_task.delay(
             subject='Thank you!',
-            message='Thank you for subscribing! Click the link to access your account. {}'.format(link),
+            message=message,
             recipient_list=[user.email]
         )
     elif event.type == 'invoice.paid':
@@ -149,9 +153,11 @@ def process_webhook(request):
         subscription.save()
 
         # send email to customer to update payment method
+        email_txt = get_template('emails/payment_failed_email.txt')
+        message = email_txt.render({})
         send_email_task.delay(
             subject='Payment failed',
-            message='Your payment method has failed. Please update your payment method.',
+            message=message,
             recipient_list=[user.email]
         )
     else:

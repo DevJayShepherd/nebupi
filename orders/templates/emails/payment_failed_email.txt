@@ -1,0 +1,5 @@
+Your payment for has failed.
+
+Please update your payment details to continue using our service.
+
+Thank you.

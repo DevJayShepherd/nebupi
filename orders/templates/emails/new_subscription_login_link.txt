@@ -1,0 +1,5 @@
+Thank you for subscribing! 
+
+Click the link below to access your account:
+
+{{link}}

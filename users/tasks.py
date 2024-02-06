@@ -31,6 +31,6 @@ env = environ.Env()
 def send_email_task(subject,
                     message,
                     recipient_list,
-                    from_email=env("DEFAULT_FROM_EMAIL"),
+                    from_email='{} <{}>'.format(env("DEFAULT_FROM_NAME"), env("DEFAULT_FROM_EMAIL")),
                     **kwargs):
     send_mail(subject, message, from_email, recipient_list, **kwargs)

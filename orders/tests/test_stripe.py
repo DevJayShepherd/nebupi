@@ -70,7 +70,8 @@ class ProcessStripeWebhookTests(TestCase):
 
 
     @patch('orders.stripe.stripe_helper.stripe.Subscription.retrieve')
-    def test_checkout_session_completed(self, mock_retrieve):
+    @patch('orders.stripe.stripe_helper.send_email_task.delay')
+    def test_checkout_session_completed(self, mock_send_email, mock_retrieve):
         start_timestamp = 1704833942
         end_timestamp = 1707512342
 
@@ -112,6 +113,7 @@ class ProcessStripeWebhookTests(TestCase):
         self.assertEqual(subscription.subscription_id, 'new_sub_test_123')
         self.assertEqual(subscription.start_date, datetime.date.fromtimestamp(start_timestamp))
         self.assertEqual(subscription.end_date, datetime.date.fromtimestamp(end_timestamp))
+        mock_send_email.assert_called_once()
 
 
     @patch('orders.stripe.stripe_helper.stripe.Subscription.retrieve')
@@ -186,7 +188,8 @@ class ProcessStripeWebhookTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-    def test_invoice_payment_failed(self):
+    @patch('orders.stripe.stripe_helper.send_email_task.delay')
+    def test_invoice_payment_failed(self, mock_send_email):
         data = {
             'type': 'invoice.payment_failed',
             'data': {
@@ -206,3 +209,4 @@ class ProcessStripeWebhookTests(TestCase):
         self.subscription_monthly.refresh_from_db()
         self.assertEqual(self.subscription_monthly.status, SubscriptionStatus.PAST_DUE)
         self.assertEqual(response.status_code, 200)
+        mock_send_email.assert_called_once()

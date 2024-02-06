@@ -19,8 +19,8 @@ limitations under the License.
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model, authenticate, login
-from django.urls import reverse
 from django.views.generic import FormView
+from django.template.loader import get_template
 
 # users
 from .forms import CustomUserCreationForm, EmailLoginForm
@@ -84,18 +84,11 @@ class EmailLoginView(FormView):
         """Send an email with this login link to this user."""
 
         subject = "Log in to our app"
-        body = f"""\
-            Hello,
-
-            Open the link below to log in:
-
-                {link}
-
-            Thank you!
-            """
+        email_txt = get_template('emails/login_link_email.txt')
+        message = email_txt.render({'link': link})
         to_email = user.email
 
-        send_email_task.delay(subject=subject, message=body, recipient_list=[to_email])
+        send_email_task.delay(subject=subject, message=message, recipient_list=[to_email])
 
 
     def email_submitted(self, email):
