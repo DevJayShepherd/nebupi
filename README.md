@@ -20,7 +20,7 @@ If you're eager to dive in, here's how to get started:
 
 ## Stay Connected
 
-Got questions? Suggestions? Email me at hello@readysaas.app! You can also search for answers and write your questions/issues through the [Issues](https://github.com/your-repo/ready-saas/issues) section of this repository.
+Got questions? Suggestions? Email me at hello@readysaas.app! You can also search for answers and write your questions/issues through the [Issues](https://github.com/readysaas/readysaas/issues) section of this repository.
 
 
 Happy coding! 🚀
