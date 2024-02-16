@@ -65,7 +65,15 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-THIRD_PARTY_APPS = env.list('THIRD_PARTY_APPS')
+THIRD_PARTY_APPS = [
+    "django_celery_results",
+    "django_celery_beat",
+]
+
+if DEBUG:
+    THIRD_PARTY_APPS += [
+        "django_extensions",
+    ]
 
 LOCAL_APPS = [
     "ready_saas",
