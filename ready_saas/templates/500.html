@@ -3,37 +3,19 @@
 {% load static %}
 
 {% block title %}
-  Not Found
-{% endblock %}
-
-{% block navbar %}
+  Error
 {% endblock %}
 
 {% block content %}
-  <main>
-    <section class="section-border border-primary">
-      <div class="container d-flex flex-column">
-        <div class="row align-items-center justify-content-center gx-0 min-vh-100">
-          <div class="col-8 col-md-6 col-lg-7 offset-md-1 order-md-2 mt-auto mt-md-0 pt-8 pb-4 py-md-11">
-            <!-- Image -->
-            <img src="{% static 'ready_saas/img/illustrations/illustration-1-dark.png' %}" alt="" class="img-fluid" />
-          </div>
-          <div class="col-12 col-md-5 col-lg-4 order-md-1 mb-auto mb-md-0 pb-8 py-md-11">
-            <!-- Heading -->
-            <h1 class="display-3 fw-bold text-center">Uh Oh. 500</h1>
-
-            <!-- Text -->
-            <p class="mb-5 text-center text-body-secondary">
-              Oops! Something went wrong on our end. Please try again later. If the issue persists, please <a href="#" class="btn-link">Contact us</a>
-            </p>
-
-            <!-- Link -->
-            <div class="text-center">
-              <a href="{% url 'dashboard' %}" class="btn btn-primary me-2">Back to Dashboard</a>
-            </div>
-          </div>
-        </div> <!-- / .row -->
-      </div> <!-- / .container -->
-    </section>
-  </main>
+<div class="text-center py-10 px-4 sm:px-6 lg:px-8 mt-20">
+  <h1 class="block text-7xl font-bold sm:text-9xl">500</h1>
+  <h1 class="block text-2xl font-bold text-white"></h1>
+  <p class="mt-3">Oops! Something went wrong on our end. Please try again later. If the issue persists, please <a href="#" class="btn-link">Contact us</a></p>
+  <div class="mt-5 flex flex-col justify-center items-center gap-2 sm:flex-row sm:gap-3">
+    <a class="w-full sm:w-auto py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent" href="{% url 'dashboard' %}">
+      <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      Back home
+    </a>
+  </div>
+</div>
 {% endblock %}

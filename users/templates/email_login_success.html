@@ -4,24 +4,15 @@
 
 {% block title %}Login{% endblock %}
 
-{% block navbar %}{% endblock %}
-
 {% block content %}
-<section class="container d-flex flex-column">
-    <div class="row align-items-center justify-content-center g-0 min-vh-100">
-        <div class="col-lg-5 col-md-8 py-8 py-xl-0">
-            <!-- Card -->
-            <div class="card shadow">
-                <!-- Card body -->
-                <div class="card-body p-6">
-                    <div class="mb-4">
-                        <h1 class="mb-1 fw-bold">Check your inbox.</h1>
-                        <p> We've emailed you a login link. You should receive the email
-                            shortly!</p>
-                    </div>
-                </div>
-            </div>
+<main class="w-full max-w-md mx-auto my-10 p-6">
+    <div class="mt-7 border border-primary rounded-xl shadow-sm">
+      <div class="p-4 sm:p-7">
+        <div class="text-center">
+          <h1 class="block text-2xl font-bold">Check your inbox.</h1>
+          <p class="mt-2 text-sm">We've emailed you a login link. You should receive the email shortly!</p>
         </div>
+      </div>
     </div>
-</section>
+  </main>
 {% endblock %}

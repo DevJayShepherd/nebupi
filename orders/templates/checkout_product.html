@@ -6,50 +6,55 @@
   Checkout
 {% endblock %}
 
-{% block content %}
-  <!-- HEADER -->
-  <header class="bg-dark pt-9 pb-11 d-none d-md-block">
-    <div class="container-md">
-      <div class="row align-items-center">
-        <div class="col">
-          <!-- Heading -->
-          <h1 class="fw-bold text-white mb-2">One-Time Payment Checkout (Demo)</h1>
-        </div>
-      </div>
-    </div>
-  </header>
+{% block navbar %}
+{% endblock %}
 
-  <!-- MAIN -->
-  <main class="pb-8 pb-md-11 mt-md-n6">
-    <div class="container-md">
-      <div class="row">
-        <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2">
-          <div class="card card-bleed shadow-light-lg mb-4">
-            <!-- Card body -->
-            <div class="p-5 text-center">
-              <div id="error-container"></div>
-              <div class="mb-5 mt-3">
-                <h1 class="fw-bold">{{ product.display_name }}</h1>
-                <p class="mb-0">
-                  Purchase <span class="text-dark fw-medium">{{ product.display_name }} and download now!</span>
-                </p>
-              </div>
-              <div class="d-flex justify-content-center">
-                <span class="h3 mb-0 fw-bold text-primary">$</span>
-                <div class="display-4 fw-bold text-primary">{{ product.price|stringformat:'d' }}</div>
-              </div>
-            </div>
-            <hr class="m-0" />
-            <div class="p-5">
-              <div id="paypal-button-container"></div>
-            </div>
-            <!-- hr -->
-            <hr class="m-0" />
+{% block footer %}
+{% endblock %}
+
+{% block content %}
+  <div class="flex min-h-screen md:h-screen grid sm:grid-cols-1 md:grid-cols-2 md:items-center">
+    <div class="py-5 md:h-auto md:p-auto m-auto px-5">
+      <h1 class="text-3xl md:text-5xl font-black tracking-tighter lg:text-6xl lg:leading-none">
+        Insert Reassuring phrase
+        <br />
+        <span class="text-primary">about your product</span>
+      </h1>
+      <p class="text-gray-500 mt-2">Reassuring subtitle</p>
+    </div>
+
+    <div class="flex py-10 md:p-auto md:min-h-screen bg-white">
+      <div class="m-auto w-3/4 md:max-w-xl">
+        <div id="error-container">
+        </div>
+        <div>
+          <h2 class="text-3xl text-gray-500">Order Summary</h2>
+          <div class="overflow-x-auto">
+            <table class="table">
+              <!-- head -->
+              <thead>
+                <tr>
+                  <th class="text-gray-500">Product</th>
+                  <th class="text-gray-500">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- row 1 -->
+                <tr>
+                  <td class="text-gray-500">{{ product.display_name }}</td>
+                  <td class="text-gray-500">$ {{ product.price|stringformat:'d' }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+
+          <h3 class="text-2xl font-semibold mt-10 text-gray-500">Checkout</h3>
+          <p class="text-gray-500 mt-2">Pay with your PayPal account.</p>
+          <div id="paypal-button-container"></div>
         </div>
       </div>
     </div>
-  </main>
+  </div>
 
   <!-- PayPal -->
   <p id="result-message"></p>
@@ -113,13 +118,14 @@
                 // get the error container
                 var errorContainer = document.getElementById('error-container')
                 // add an html element with the error message
-                errorContainer.innerHTML = `
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Sorry! </strong>` + msg +`
-                        <p>Please try again or contact us if the problem persists.</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>`
-
+                errorContainer.innerHTML =
+                  `<div role="alert" class="alert mb-20">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span>There was an error: ` + msg + `</span>
+                  </div>`
+    
                 return
               }
     

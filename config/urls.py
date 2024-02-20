@@ -52,10 +52,17 @@ from orders.views import (
 )
 
 # ready_saas
-from ready_saas.views import dashboard
+from ready_saas.views import landing, dashboard
 
 # email login
 from sesame.views import LoginView
+
+import environ
+
+
+env = environ.Env(
+    DEBUG=(bool, False)
+)
 
 
 urlpatterns = [
@@ -98,7 +105,7 @@ urlpatterns = [
 
 
     # app pages
-    path("", TemplateView.as_view(template_name="landing.html"), name="landing"),
+    path("", landing, name="landing"),
     path("dashboard/", dashboard, name="dashboard"),
 
     # ============= #
@@ -113,3 +120,8 @@ urlpatterns = [
     # path('test_404/', TemplateView.as_view(template_name='404.html')),
     # path('test_500/', TemplateView.as_view(template_name='500.html')),
 ]
+
+if env('DEBUG'):
+    urlpatterns += [
+        path('__reload__/', include('django_browser_reload.urls')),
+    ]

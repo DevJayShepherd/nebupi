@@ -73,6 +73,7 @@ THIRD_PARTY_APPS = [
 if DEBUG:
     THIRD_PARTY_APPS += [
         "django_extensions",
+        "django_browser_reload",
     ]
 
 LOCAL_APPS = [
@@ -104,6 +105,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if DEBUG:
+    MIDDLEWARE += [
+        'django_browser_reload.middleware.BrowserReloadMiddleware',
+    ]
+
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",

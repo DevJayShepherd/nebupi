@@ -31,8 +31,8 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ['email']
 
-    email = forms.EmailField(label=False, widget=forms.EmailInput(attrs={'placeholder':'Email', 'class':'form-control', 'style':'margin-top: 10px;'}))
-    password1 = forms.CharField(label=False, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
+    email = forms.EmailField(label=False, widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
+    password1 = forms.CharField(label=False, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
     password2 = None
 
     def save(self, commit=True):
@@ -44,16 +44,16 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomAuthenticationForm(AuthenticationForm):
-    username = forms.EmailField(label=False, widget=forms.EmailInput(attrs={'placeholder':'Email', 'class':'form-control', 'style':'margin-top: 10px;'}))
-    password = forms.CharField(label=False, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
+    username = forms.EmailField(label=False, widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
+    password = forms.CharField(label=False, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
 
 
 class EmailLoginForm(forms.Form):
-    email = forms.EmailField(label=False, widget=forms.EmailInput(attrs={'placeholder':'Email', 'class':'form-control', 'style':'margin-top: 10px;'}))
+    email = forms.EmailField(label=False, widget=forms.EmailInput(attrs={'placeholder':'Email'}))
 
 
 class AsyncPasswordResetForm(PasswordResetForm):
-    email = forms.EmailField(label=False, max_length=254, widget=forms.EmailInput(attrs={'placeholder':'Email', 'class': 'form-control', 'autocomplete': 'email'}))
+    email = forms.EmailField(label=False, max_length=254, widget=forms.EmailInput(attrs={'placeholder': 'Email', 'autocomplete': 'email'}))
 
     def send_mail(
         self,
@@ -81,5 +81,5 @@ class AsyncPasswordResetForm(PasswordResetForm):
 
 
 class CustomSetPasswordForm(SetPasswordForm):
-    new_password1 = forms.CharField(label=False, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'New Password'}))
-    new_password2 = forms.CharField(label=False, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}))
+    new_password1 = forms.CharField(label=False, widget=forms.PasswordInput(attrs={'placeholder': 'New Password'}))
+    new_password2 = forms.CharField(label=False, widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}))

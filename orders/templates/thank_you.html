@@ -7,18 +7,11 @@
 {% endblock %}
 
 {% block content %}
-  <section class="py-8 py-md-11">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-8 text-center">
-          <!-- Headin -->
-          <h1 class="display-2">Thank you!</h1>
-
-          <!-- Text -->
-          <p class="lead text-body-secondary mb-7 mb-md-9">Our focus is in making your life easier.</p>
-          <a href={% url 'dashboard' %} type="button" class="btn btn-primary">Let's get started!</a>
-        </div>
-      </div> <!-- / .row -->
-    </div> <!-- / .container -->
-  </section>
+<div class="text-center py-10 px-4 sm:px-6 lg:px-8 mt-20">
+  <h1 class="block text-7xl font-bold sm:text-8xl">Thank You!</h1>
+  <h1 class="block text-2xl font-bold text-white"></h1>
+  <div class="mt-10 flex flex-col justify-center items-center gap-2 sm:flex-row sm:gap-3">
+    <a href="{% url 'dashboard' %}" class="btn btn-primary">Get Started!</a>
+  </div>
+</div>
 {% endblock %}

@@ -3,115 +3,796 @@
 {% load static %}
 
 {% block title %}
-  Ready SaaS Demo
+  Your Page Title
 {% endblock %}
 
 {% block content %}
-  <!-- WELCOME -->
-  <section class="pt-4 pt-md-11">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-12 col-md-5 col-lg-6 order-md-2">
-          <!-- Image -->
-          <img src="{% static 'ready_saas/img/illustrations/illustration-3.png' %}" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0" alt="..." data-aos="fade-up" data-aos-delay="100" />
+  <div class="absolute inset-x-0 -top-400 -z-50 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+    <div class="relative left-[calc(50%-16rem)] aspect-[1055/678] w-[36.125rem] -translate-x-1/4 -translate-y-1/4 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+  </div>
+  <!-- Hero -->
+  <div class="max-w-[85rem] mx-auto px-6 pt-14 lg:px-8">
+    {% if messages %}
+      {% for message in messages %}
+        <div role="alert" class="alert bg-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span class="text text-white">{{ message }}</span>
         </div>
-        <div class="col-12 col-md-7 col-lg-6 order-md-1" data-aos="fade-up">
-          <!-- Heading -->
-          <h1 class="display-3 text-center text-md-start">
-            <span class="text-primary">Ready SaaS</span><br />
-            Starter project
-          </h1>
+      {% endfor %}
+    {% endif %}
+    <!-- Grid -->
+    <div class="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center py-40">
+      <div>
+        <h1 class="text-5xl font-black tracking-tighter lg:text-6xl lg:leading-none">
+          Craft Your
+          <br />
+          <span class="text-primary">Value Proposition</span>
+          <br />
+          In This Headline
+        </h1>
+        <p class="mt-3 text-2xl">Expand on the headline benefit with a brief explanation or secondary benefit here.</p>
 
-          <!-- Text -->
-          <p class="lead text-center text-md-start text-body-secondary mb-6 mb-lg-8">A Django starter project that includes everything you need to launch your SaaS startup super fast.</p>
-          <p class="lead text-center text-md-start text-body-secondary mb-6 mb-lg-8">User authentication, Stripe and PayPal integrations, email notifications, background tasks, and more all pre-configured and ready to go.</p>
-          <p class="lead text-center text-md-start text-body-secondary mb-6 mb-lg-8">Ready SaaS is designed to be edited and extended to fit your exact needs, making it the perfect starting point for your next big project.</p>
+        <!-- Buttons -->
 
-          <!-- Buttons -->
-          <div class="text-center text-md-start mb-2">
-            <a href="https://www.readysaas.app" target="_blank" class="btn btn-primary shadow lift me-1">Get Ready SaaS now! <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a>
-          </div>
-          <div class="text-center text-md-start">
-            <a href="#features" class="btn btn-outline-primary shadow lift me-1">See All Features <i class="fe fe-arrow-down d-none d-md-inline ms-3"></i></a>
-          </div>
+        <div class="mt-7 grid gap-3 w-full sm:inline-flex">
+          <a class="btn btn-primary text-white" href="#cta-section">
+            CTA goes here<svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </a>
         </div>
-      </div> <!-- / .row -->
-    </div> <!-- / .container -->
-  </section>
+        <!-- End Buttons -->
+      </div>
+      <!-- End Col -->
 
-  <!-- FEATURES -->
-  <section id="features" class="py-8 py-md-11 border-bottom">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-7 text-center" data-aos="fade-up">
-          <!-- Heading -->
-          <h2 class="fw-bold mb-9">Explore all features</h2>
+      <div class="relative ms-4">
+        <img class="w-full rounded-md" src="https://ready-saas-demo-157bf36bed0c.herokuapp.com/static/ready_saas/img/illustrations/illustration-3.png" alt="Image Description" />
+      </div>
+      <!-- End Col -->
+    </div>
+    <!-- End Grid -->
+  </div>
+  <!-- End Hero -->
+
+  <!-- Features -->
+  <div class="max-w-[85rem] px-4 py-40 sm:px-6 lg:px-8 lg:py-40 mx-auto">
+    <!-- Grid -->
+    <div class="md:grid md:grid-cols-2 md:items-center md:gap-12 xl:gap-32">
+      <div>
+        <img class="rounded-xl hidden md:block" src="https://landkit.goodthemes.co/assets/img/illustrations/illustration-1.png" alt="Image Description" />
+      </div>
+      <!-- End Col -->
+
+      <div class="mt-5 sm:mt-10 lg:mt-0">
+        <div class="space-y-6 sm:space-y-8">
+          <!-- Title -->
+          <div class="space-y-2 md:space-y-4">
+            <h2 class="font-black tracking-tighter text-3xl lg:text-5xl">Problem Statement</h2>
+            <p class="text-xl">Describe the problem your target audience is facing that your product or service solves.</p>
+          </div>
+          <!-- End Title -->
+
+          <!-- List -->
+          <ul role="list" class="space-y-2 sm:space-y-4">
+            <li class="flex space-x-3">
+              <span class="mt-0.5 size-5 flex justify-center items-center rounded-full text-primary">
+                <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+
+              <span class="text-sm sm:text-base"><span class="font-bold">Easy & fast</span> designing</span>
+            </li>
+
+            <li class="flex space-x-3">
+              <span class="mt-0.5 size-5 flex justify-center items-center rounded-full text-primary">
+                <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+
+              <span class="text-sm sm:text-base">Powerful <span class="font-bold">features</span></span>
+            </li>
+
+            <li class="flex space-x-3">
+              <span class="mt-0.5 size-5 flex justify-center items-center rounded-full text-primary">
+                <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </span>
+
+              <span class="text-sm sm:text-base">User Experience Design</span>
+            </li>
+          </ul>
+          <!-- End List -->
         </div>
       </div>
-      <div class="row">
-        <div class="col-12 col-md-4" data-aos="fade-up">
-          <!-- Icon -->
-          <div class="icon text-primary mb-3">
-            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <g fill="none" fill-rule="evenodd">
-                <path d="M0 0h24v24H0z" />
-                <path d="M7 3h10a4 4 0 110 8H7a4 4 0 110-8zm0 6a2 2 0 100-4 2 2 0 000 4z" fill="#335EEA" />
-                <path d="M7 13h10a4 4 0 110 8H7a4 4 0 110-8zm10 6a2 2 0 100-4 2 2 0 000 4z" fill="#335EEA" opacity=".3" />
-              </g>
-            </svg>
-          </div>
+      <!-- End Col -->
+    </div>
+    <!-- End Grid -->
+  </div>
+  <!-- End Features -->
 
-          <!-- Heading -->
-          <h3>Pre-Built Functional Pages</h3>
+  <!-- Icon Blocks -->
+  <div class="max-w-[85rem] px-4 my-20 py-40 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <!-- Title -->
+    <div class="mx-auto max-w-2xl mb-8 lg:mb-14 text-center">
+      <h2 class="font-black tracking-tighter text-3xl lg:text-5xl">Explore Features</h2>
+      <p class="mt-3 text-xl">The powerful and flexible theme for all kinds of businesses.</p>
+    </div>
+    <!-- End Title -->
 
-          <!-- Text -->
-          <p class="text-body-secondary mb-6 mb-md-0">Jumpstart your project with essential pages like a landing page, pricing page, checkout, and a user-friendly dashboard, all designed to get you started fast.</p>
-          <p class="mt-4"><a href="{% url 'dashboard' %}" class="">Dashboard <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
-          <p><a href="{% url 'user_subscription' %}" class="">User subscription <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
-          <p><a href="{% url 'join_waitlist' %}" class="">Waitlist <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 items-center gap-12">
+      <!-- Icon Block -->
+      <div>
+        <div class="relative flex justify-center items-center size-12 rounded-xl before:absolute before:-inset-px before:-z-[1] before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 before:rounded-xl dark:bg-slate-900">
+          <svg class="flex-shrink-0 size-6 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="10" height="14" x="3" y="8" rx="2" />
+            <path d="M5 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-2.4" />
+            <path d="M8 18h.01" />
+          </svg>
         </div>
-        <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="50">
-          <!-- Icon -->
-          <div class="icon text-primary mb-3">
-            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <g fill="none" fill-rule="evenodd">
-                <path d="M0 0h24v24H0z" />
-                <path d="M5.5 4h4A1.5 1.5 0 0111 5.5v1A1.5 1.5 0 019.5 8h-4A1.5 1.5 0 014 6.5v-1A1.5 1.5 0 015.5 4zm9 12h4a1.5 1.5 0 011.5 1.5v1a1.5 1.5 0 01-1.5 1.5h-4a1.5 1.5 0 01-1.5-1.5v-1a1.5 1.5 0 011.5-1.5z" fill="#335EEA" />
-                <path d="M5.5 10h4a1.5 1.5 0 011.5 1.5v7A1.5 1.5 0 019.5 20h-4A1.5 1.5 0 014 18.5v-7A1.5 1.5 0 015.5 10zm9-6h4A1.5 1.5 0 0120 5.5v7a1.5 1.5 0 01-1.5 1.5h-4a1.5 1.5 0 01-1.5-1.5v-7A1.5 1.5 0 0114.5 4z" fill="#335EEA" opacity=".3" />
-              </g>
-            </svg>
-          </div>
-
-          <!-- Heading -->
-          <h3>Payment Integrations</h3>
-
-          <!-- Text -->
-          <p class="text-body-secondary mb-6 mb-md-0">Purchase and subscription flows fully integrated with Stripe and PayPal, ensuring your payment systems are robust and reliable.</p>
-          <p class="mt-4"><a href="{% url 'pricing' %}" class="">Pricing page <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
+        <div class="mt-5">
+          <h3 class="text-lg font-semibold">Responsive</h3>
+          <p class="mt-1">Responsive, and mobile-first project on the web</p>
         </div>
-        <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
-          <!-- Icon -->
-          <div class="icon text-primary mb-3">
-            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <g fill="none" fill-rule="evenodd">
-                <path d="M0 0h24v24H0z" />
-                <path d="M17.272 8.685a1 1 0 111.456-1.37l4 4.25a1 1 0 010 1.37l-4 4.25a1 1 0 01-1.456-1.37l3.355-3.565-3.355-3.565zm-10.544 0L3.373 12.25l3.355 3.565a1 1 0 01-1.456 1.37l-4-4.25a1 1 0 010-1.37l4-4.25a1 1 0 011.456 1.37z" fill="#335EEA" />
-                <rect fill="#335EEA" opacity=".3" transform="rotate(15 12 12)" x="11" y="4" width="2" height="16" rx="1" />
-              </g>
-            </svg>
-          </div>
+      </div>
+      <!-- End Icon Block -->
 
-          <!-- Heading -->
-          <h3>User Authentication</h3>
-
-          <!-- Text -->
-          <p class="text-body-secondary mb-0">A secure and scalable user authentication system is built-in, allowing you to manage user access and data with confidence.</p>
-          <p class="mt-4"><a href="{% url 'signup' %}" class="">Sign up <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
-          <p><a href="{% url 'login' %}" class="">Login <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
-          <p><a href="{% url 'email_login' %}" class="">Magic Login Link <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
-          <p><a href="{% url 'password_reset' %}" class="">Forgot Password <i class="fe fe-arrow-right d-none d-md-inline ms-3"></i></a></p>
+      <!-- Icon Block -->
+      <div>
+        <div class="relative flex justify-center items-center size-12 rounded-xl before:absolute before:-inset-px before:-z-[1] before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 before:rounded-xl dark:bg-slate-900">
+          <svg class="flex-shrink-0 size-6 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 7h-9" />
+            <path d="M14 17H5" />
+            <circle cx="17" cy="17" r="3" />
+            <circle cx="7" cy="7" r="3" />
+          </svg>
         </div>
-      </div> <!-- / .row -->
-    </div> <!-- / .container -->
-  </section>
+        <div class="mt-5">
+          <h3 class="text-lg font-semibold">Customizable</h3>
+          <p class="mt-1">Components are easily customized and extendable</p>
+        </div>
+      </div>
+      <!-- End Icon Block -->
+
+      <!-- Icon Block -->
+      <div>
+        <div class="relative flex justify-center items-center size-12 rounded-xl before:absolute before:-inset-px before:-z-[1] before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 before:rounded-xl dark:bg-slate-900">
+          <svg class="flex-shrink-0 size-6 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+          </svg>
+        </div>
+        <div class="mt-5">
+          <h3 class="text-lg font-semibold">Documentation</h3>
+          <p class="mt-1">Every component and plugin is well documented</p>
+        </div>
+      </div>
+      <!-- End Icon Block -->
+
+      <!-- Icon Block -->
+      <div>
+        <div class="relative flex justify-center items-center size-12 rounded-xl before:absolute before:-inset-px before:-z-[1] before:bg-gradient-to-br before:from-blue-600 before:via-transparent before:to-violet-600 before:rounded-xl dark:bg-slate-900">
+          <svg class="flex-shrink-0 size-6 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2v5Z" />
+            <path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" />
+          </svg>
+        </div>
+        <div class="mt-5">
+          <h3 class="text-lg font-semibold">24/7 Support</h3>
+          <p class="mt-1">Contact us 24 hours a day, 7 days a week</p>
+        </div>
+      </div>
+      <!-- End Icon Block -->
+    </div>
+  </div>
+  <!-- End Icon Blocks -->
+
+  <!-- Testimonials -->
+  <div class="relative overflow-hidden my-40">
+    <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-transparent via-primary to-transparent h-px"></div>
+
+      <div class="relative pt-12 pb-24 md:pt-24 text-center">
+        <!-- Title -->
+        <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+          <h2 class="font-black tracking-tighter text-3xl lg:text-5xl">
+            Compliments from
+            <br />
+            <span class="text-primary">Your Customers</span>
+          </h2>
+          <p class="mt-1 text-xl">Thoughts from those who've experienced your product in action.</p>
+        </div>
+        <!-- End Title -->
+
+        <!-- Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6">
+          <!-- Col -->
+          <div class="space-y-4 xl:space-y-6">
+            <!-- Card -->
+            <div class="flex flex-col border border-primary rounded-xl">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-1.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                  <svg class="flex-shrink-0 size-4" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.875 18C8.531 18 9.875 16.656 9.875 15V12H6.875C5.219 12 3.875 13.344 3.875 15C3.875 16.656 5.219 18 6.875 18Z" fill="#0ACF83"></path>
+                    <path d="M3.875 9C3.875 7.344 5.219 6 6.875 6H9.875V12H6.875C5.219 12 3.875 10.656 3.875 9Z" fill="#A259FF"></path>
+                    <path d="M3.875 3C3.875 1.344 5.219 0 6.875 0H9.875V6H6.875C5.219 6 3.875 4.656 3.875 3Z" fill="#F24E1E"></path>
+                    <path d="M9.87501 0H12.875C14.531 0 15.875 1.344 15.875 3C15.875 4.656 14.531 6 12.875 6H9.87501V0Z" fill="#FF7262"></path>
+                    <path d="M15.875 9C15.875 10.656 14.531 12 12.875 12C11.219 12 9.87501 10.656 9.87501 9C9.87501 7.344 11.219 6 12.875 6C14.531 6 15.875 7.344 15.875 9Z" fill="#1ABCFE"></path>
+                  </svg>
+                </div>
+                <p class="text-start leading-7">I don't know how to thank for such a good service! It should be more expensive actually!</p>
+              </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="flex flex-col border border-primary rounded-xl">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-2.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+
+                  <svg class="flex-shrink-0 size-4" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="a">
+                        <stop stop-color="#DA552F" offset="0%"></stop>
+                        <stop stop-color="#D04B25" offset="100%"></stop>
+                      </linearGradient>
+                    </defs>
+                    <g fill="none" fill-rule="evenodd">
+                      <path d="M128 256c70.694 0 128-57.306 128-128S198.694 0 128 0 0 57.306 0 128s57.306 128 128 128z" fill="url(#a)"></path>
+                      <path d="M96 76.8v102.4h19.2v-32h29.056c19.296-.512 34.944-16.16 34.944-35.2 0-19.552-15.648-35.2-34.944-35.2H96zm48.493 51.2H115.2V96h29.293c8.563 0 15.507 7.168 15.507 16s-6.944 16-15.507 16z" fill="#FFF"></path>
+                    </g>
+                  </svg>
+                </div>
+                <p class="text-start leading-7">This is a game-changer for anyone working in SaaS! As a fan of startups and a lover of efficiency, I couldn't be happier with what this company brings to the table. This tool supercharges it my workflow every day!</p>
+              </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="flex flex-col border border-primary rounded-xl">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-3.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                  <svg class="flex-shrink-0 size-4" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.875 18C8.531 18 9.875 16.656 9.875 15V12H6.875C5.219 12 3.875 13.344 3.875 15C3.875 16.656 5.219 18 6.875 18Z" fill="#0ACF83"></path>
+                    <path d="M3.875 9C3.875 7.344 5.219 6 6.875 6H9.875V12H6.875C5.219 12 3.875 10.656 3.875 9Z" fill="#A259FF"></path>
+                    <path d="M3.875 3C3.875 1.344 5.219 0 6.875 0H9.875V6H6.875C5.219 6 3.875 4.656 3.875 3Z" fill="#F24E1E"></path>
+                    <path d="M9.87501 0H12.875C14.531 0 15.875 1.344 15.875 3C15.875 4.656 14.531 6 12.875 6H9.87501V0Z" fill="#FF7262"></path>
+                    <path d="M15.875 9C15.875 10.656 14.531 12 12.875 12C11.219 12 9.87501 10.656 9.87501 9C9.87501 7.344 11.219 6 12.875 6C14.531 6 15.875 7.344 15.875 9Z" fill="#1ABCFE"></path>
+                  </svg>
+                </div>
+                <p class="text-start leading-7">This is huge! I appreciate so much for the effort, such high quality service! big thanks! Is there a way to support you for your work?</p>
+              </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="flex flex-col border border-primary dark:border-gray-700 rounded-xl dark:bg-slate-900">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-5.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                  <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" fill="#1da1f2"></path>
+                  </svg>
+                </div>
+                <p class="text-start leading-7">Underratted</p>
+              </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="hidden sm:block xl:hidden flex-col border border-primary rounded-xl dark:bg-slate-900">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-5.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                  <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" fill="#1da1f2"></path>
+                  </svg>
+                </div>
+                <p class="text-start leading-7">This is freaking amazing. How is it not everybody's favorite? I'm in love man. 😍</p>
+              </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="hidden sm:block xl:hidden flex-col border border-primary rounded-xl dark:bg-slate-900">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-1.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-start leading-7">
+                  Continue what you're doing. <span class="font-semibold">You're such a great help to a lot of developers.</span> Thank you!"
+                </p>
+              </div>
+            </div>
+            <!-- End Card -->
+          </div>
+          <!-- End Col -->
+
+          <!-- Col -->
+          <div class="space-y-4 xl:space-y-6">
+            <!-- Card -->
+            <div class="flex flex-col border border-primary rounded-xl">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-2.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                  <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" fill="#1da1f2"></path>
+                  </svg>
+                </div>
+                <p class="text-start leading-7">Wow wow wow! Just wow 😲😲😲</p>
+              </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="flex flex-col border border-primary rounded-xl">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-3.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                  <svg class="flex-shrink-0 size-4" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.875 18C8.531 18 9.875 16.656 9.875 15V12H6.875C5.219 12 3.875 13.344 3.875 15C3.875 16.656 5.219 18 6.875 18Z" fill="#0ACF83"></path>
+                    <path d="M3.875 9C3.875 7.344 5.219 6 6.875 6H9.875V12H6.875C5.219 12 3.875 10.656 3.875 9Z" fill="#A259FF"></path>
+                    <path d="M3.875 3C3.875 1.344 5.219 0 6.875 0H9.875V6H6.875C5.219 6 3.875 4.656 3.875 3Z" fill="#F24E1E"></path>
+                    <path d="M9.87501 0H12.875C14.531 0 15.875 1.344 15.875 3C15.875 4.656 14.531 6 12.875 6H9.87501V0Z" fill="#FF7262"></path>
+                    <path d="M15.875 9C15.875 10.656 14.531 12 12.875 12C11.219 12 9.87501 10.656 9.87501 9C9.87501 7.344 11.219 6 12.875 6C14.531 6 15.875 7.344 15.875 9Z" fill="#1ABCFE"></path>
+                  </svg>
+                </div>
+                <p class="text-start leading-7">Hi there, I just wanted to say congrats on developing such an excellent tool. I've spent months going around in circles looking for something that is complete and easily and I've found my foundation. It's really excellent work you've done here. I'm looking forward to seeing where you take this.</p>
+              </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="flex flex-col border border-primary rounded-xl">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-4.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                  <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" fill="#1da1f2"></path>
+                  </svg>
+                </div>
+                <p class="text-start leading-7">This is just amazing. Guys, unbelievably, you made it happen. A lot of time saved for you guys. Thanks 🙏</p>
+              </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="flex flex-col border border-primary rounded-xl">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-1.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                  <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" fill="#1da1f2"></path>
+                  </svg>
+                </div>
+                <p class="text-start leading-7">I am working on my website landing page and prebuilt it using this tool - such a time saver.</p>
+              </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="hidden sm:block xl:hidden flex-col border border-primary rounded-xl dark:bg-slate-900">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-5.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                  <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" fill="#1da1f2"></path>
+                  </svg>
+                </div>
+                <p class="text-start leading-7">Decided to try it out on a new project and I have to say, it's pretty dope. Hooked on day one 😄</p>
+              </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="hidden sm:block xl:hidden flex-col border border-primary rounded-xl">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-1.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                  <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" fill="#1da1f2"></path>
+                  </svg>
+                </div>
+                <p class="text-start leading-7">This tool can definitely boost productivity. It offers additional components and features that can enhance your development process. Give it a try!</p>
+              </div>
+            </div>
+            <!-- End Card -->
+          </div>
+          <!-- End Col -->
+
+          <!-- Col -->
+          <div class="space-y-4 xl:space-y-6 sm:hidden xl:block">
+            <!-- Card -->
+            <div class="flex flex-col border border-primary rounded-xl">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-1.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                  <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" fill="#1da1f2"></path>
+                  </svg>
+                </div>
+                <p class="text-start leading-7">This is soooooooo amazing. I love it!!! 😍</p>
+              </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="flex flex-col border border-primary rounded-xl">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-4.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-start leading-7">
+                  Continue what you're doing. <span class="font-semibold">You're such a great help to a lot of developers.</span> Thank you!"
+                </p>
+              </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="flex flex-col border border-primary dark:border-gray-700 rounded-xl dark:bg-slate-900">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-2.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                  <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" fill="#1da1f2"></path>
+                  </svg>
+                </div>
+                <p class="text-start leading-7">it's pretty dope. Hooked on day one😄</p>
+              </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="flex flex-col border border-primary rounded-xl">
+              <div class="p-4 md:p-6">
+                <div class="flex justify-between">
+                  <div class="flex items-center gap-x-3 mb-5">
+                    <img class="inline-block size-9 rounded-full" src="{% static 'ready_saas/img/avatars/avatar-3.jpg' %}" alt="Image Description" />
+                    <div class="grow">
+                      <p class="font-semibold">First Last</p>
+                    </div>
+                  </div>
+                  <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" fill="#1da1f2"></path>
+                  </svg>
+                </div>
+                <p class="text-start leading-7">My new SaaS tool of choice! You should give it a try!</p>
+              </div>
+            </div>
+            <!-- End Card -->
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Grid -->
+      </div>
+    </div>
+  </div>
+  <!-- End Testimonials -->
+
+  <!-- Pricing -->
+  {% block cta_section %}
+    <div id="cta-section" class="max-w-[85rem] mt-20 px-4 py-10 sm:px-6 lg:px-8 lg:py-14 md:w-3/4 mx-auto">
+      <!-- Title -->
+      <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+        <h2 class="font-black tracking-tighter text-3xl lg:text-5xl">Pricing</h2>
+        <p class="text-xl mt-5">Whatever your status, our offers evolve according to your needs.</p>
+      </div>
+      <!-- End Title -->
+
+      <!-- Grid -->
+      <div class="mt-12 grid sm:grid-cols-1 md:grid-cols-3 gap-6 md:items-center">
+        <!-- Card -->
+        <div class="flex flex-col border border-gray-200 text-center rounded-xl p-8 dark:border-gray-700">
+          <h4 class="font-medium text-lg">{{ plan_tier_1.display_name }}</h4>
+          <span class="mt-5 font-bold text-5xl">
+            <span class="font-bold text-2xl -me-2">$</span>
+            {{ plan_tier_1.price|stringformat:'d' }}
+          </span>
+          <p class="mt-2 text-sm">Convincing subtitle</p>
+
+          <ul class="mt-7 space-y-2.5 text-sm">
+            <li class="flex space-x-2">
+              <svg class="flex-shrink-0 mt-0.5 size-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Feature 1</span>
+            </li>
+
+            <li class="flex space-x-2">
+              <svg class="flex-shrink-0 mt-0.5 size-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Feature 2</span>
+            </li>
+
+            <li class="flex space-x-2">
+              <svg class="flex-shrink-0 mt-0.5 size-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Feature 3</span>
+            </li>
+          </ul>
+
+          {% if plan_tier_1.payment_gateway == 'PAYPAL' %}
+            <a href="{% url 'checkout' plan_id=plan_tier_1.id %}" class="mt-5 py-3 px-4 btn btn-outline btn-primary">Buy plan</a>
+          {% else %}
+            <form action="{% url 'stripe_checkout_session_create' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="priceId" value="{{ plan_tier_1.external_plan_id }}" />
+              <button type="submit" class="w-full mt-5 py-3 px-4 btn btn-outline btn-primary">Buy plan</button>
+            </form>
+          {% endif %}
+        </div>
+        <!-- End Card -->
+
+        <!-- Card -->
+        <div class="flex flex-col border-2 border-primary text-center shadow-xl rounded-xl p-8">
+          <p class="mb-3">
+            <span class="badge badge-primary badge-outline">Most popular</span>
+          </p>
+          <h4 class="font-medium text-lg">{{ plan_tier_2.display_name }}</h4>
+          <span class="mt-5 font-bold text-5xl">
+            <span class="font-bold text-2xl -me-2">$</span>
+            {{ plan_tier_2.price|stringformat:'d' }}
+          </span>
+          <p class="mt-2 text-sm">Convincing subtitle</p>
+
+          <ul class="mt-7 space-y-2.5 text-sm">
+            <li class="flex space-x-2">
+              <svg class="flex-shrink-0 mt-0.5 size-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>2 users</span>
+            </li>
+
+            <li class="flex space-x-2">
+              <svg class="flex-shrink-0 mt-0.5 size-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Plan features</span>
+            </li>
+
+            <li class="flex space-x-2">
+              <svg class="flex-shrink-0 mt-0.5 size-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Product support</span>
+            </li>
+          </ul>
+
+          {% if plan_tier_2.payment_gateway == 'PAYPAL' %}
+            <a href="{% url 'checkout' plan_id=plan_tier_2.id %}" class="mt-5 py-3 px-4 btn btn-primary">Buy plan</a>
+          {% else %}
+            <form action="{% url 'stripe_checkout_session_create' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="priceId" value="{{ plan_tier_2.external_plan_id }}" />
+              <button type="submit" class="w-full mt-5 py-3 px-4 btn btn-primary">Buy plan</button>
+            </form>
+          {% endif %}
+        </div>
+        <!-- End Card -->
+
+        <!-- Card -->
+        <div class="flex flex-col border border-gray-200 text-center rounded-xl p-8 dark:border-gray-700">
+          <h4 class="font-medium text-lg">{{ plan_tier_3.display_name }}</h4>
+          <span class="mt-5 font-bold text-5xl">
+            <span class="font-bold text-2xl -me-2">$</span>
+            {{ plan_tier_3.price|stringformat:'d' }}
+          </span>
+          <p class="mt-2 text-sm">Convincing subtitle</p>
+
+          <ul class="mt-7 space-y-2.5 text-sm">
+            <li class="flex space-x-2">
+              <svg class="flex-shrink-0 mt-0.5 size-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>5 users</span>
+            </li>
+
+            <li class="flex space-x-2">
+              <svg class="flex-shrink-0 mt-0.5 size-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Plan features</span>
+            </li>
+
+            <li class="flex space-x-2">
+              <svg class="flex-shrink-0 mt-0.5 size-4 text-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Product support</span>
+            </li>
+          </ul>
+
+          {% if plan_tier_3.payment_gateway == 'PAYPAL' %}
+            <a href="{% url 'checkout' plan_id=plan_tier_3.id %}" class="mt-5 py-3 px-4 btn btn-outline btn-primary">Buy plan</a>
+          {% else %}
+            <form action="{% url 'stripe_checkout_session_create' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="priceId" value="{{ plan_tier_3.external_plan_id }}" />
+              <button type="submit" class="w-full mt-5 py-3 px-4 btn btn-outline btn-primary">Buy plan</button>
+            </form>
+          {% endif %}
+        </div>
+        <!-- End Card -->
+      </div>
+      <!-- End Grid -->
+    </div>
+  {% endblock %}
+  <!-- End Pricing -->
+
+  <!-- FAQ -->
+  <div class="max-w-[85rem] px-4 my-40 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <!-- Title -->
+    <div class="max-w-2xl mx-auto mb-10 lg:mb-14">
+      <h2 class="font-black tracking-tighter text-3xl lg:text-5xl">Your questions, answered</h2>
+    </div>
+    <!-- End Title -->
+
+    <div class="max-w-2xl mx-auto divide-y">
+      <div class="py-8 first:pt-0 last:pb-0">
+        <div class="flex gap-x-5">
+          <svg class="flex-shrink-0 mt-1 size-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+            <path d="M12 17h.01" />
+          </svg>
+
+          <div>
+            <h3 class="md:text-lg font-semibold">Common Question?</h3>
+            <p class="mt-1">Answer the question succinctly, providing clarity and reassurance.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="py-8 first:pt-0 last:pb-0">
+        <div class="flex gap-x-5">
+          <svg class="flex-shrink-0 mt-1 size-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+            <path d="M12 17h.01" />
+          </svg>
+
+          <div>
+            <h3 class="md:text-lg font-semibold">Another Question?</h3>
+            <p class="mt-1">Answer the question succinctly, providing clarity and reassurance.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="py-8 first:pt-0 last:pb-0">
+        <div class="flex gap-x-5">
+          <svg class="flex-shrink-0 mt-1 size-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+            <path d="M12 17h.01" />
+          </svg>
+
+          <div>
+            <h3 class="md:text-lg font-semibold">Another Question?</h3>
+            <p class="mt-1">Answer the question succinctly, providing clarity and reassurance.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="py-8 first:pt-0 last:pb-0">
+        <div class="flex gap-x-5">
+          <svg class="flex-shrink-0 mt-1 size-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+            <path d="M12 17h.01" />
+          </svg>
+
+          <div>
+            <h3 class="md:text-lg font-semibold">Another Question?</h3>
+            <p class="mt-1">Answer the question succinctly, providing clarity and reassurance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End FAQ -->
+
+  <!-- CTA -->
+  <div class="overflow-hidden dark:border-slate-800">
+    <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-transparent via-primary to-transparent h-px"></div>
+      <div class="max-w-2xl px-4 sm:px-6 py-12 md:py-20 lg:px-8 mx-auto">
+        <div class="mb-5 sm:mb-10 text-center">
+          <h2 class="font-black tracking-tighter text-3xl lg:text-5xl">Your <span class="text-primary">CTA Here</span></h2>
+          <p class="text-xl mt-3">Your Persuasive Subheading Here, Highlighting the Immediate Benefit</p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="grid gap-3 justify-center w-full sm:inline-flex">
+          <a class="btn btn-primary text-white dark:text-black" href="#cta-section">Get started</a>
+        </div>
+        <!-- End Buttons -->
+      </div>
+    </div>
+  </div>
+  <!-- End CTA -->
 {% endblock %}

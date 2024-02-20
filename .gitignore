@@ -138,3 +138,7 @@ GitHub.sublime-settings
 
 # venv environment
 .ready_saas/
+
+# node
+node_modules/
+package-lock.json
