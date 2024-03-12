@@ -10,3 +10,5 @@ django-environ==0.11.2  # https://github.com/joke2k/django-environ
 django-sesame==3.2.1 # https://django-sesame.readthedocs.io/en/stable/tutorial.html
 django-celery-beat==2.5.0 # https://django-celery-beat.readthedocs.io/en/latest/
 django-celery-results==2.5.1 # https://django-celery-results.readthedocs.io/en/latest/
+django-autoslug==1.9.9 # https://django-autoslug.readthedocs.io/en/latest/
+Markdown==3.5.2 # https://python-markdown.github.io/

@@ -81,6 +81,7 @@ LOCAL_APPS = [
     "users",
     "orders",
     "waitlist",  # Optional. Comment out if you want to exclude the waitlist functionality
+    "blog",  # Optional. Comment out if you want to exclude the blog functionality
     # Your stuff: custom apps go here
 ]
 

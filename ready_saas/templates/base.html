@@ -6,18 +6,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="{% block description %}Your Page Description{% endblock %}" />
+    <meta name="keywords" content="{% block keywords %}Your Page Keywords{% endblock %}" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@username" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}" />
+    <meta property="og:title" content="{% block og_title %}{% endblock %}" />
+    <meta property="og:description" content="{% block og_description %}{% endblock %}" />
+    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% endblock %}" />
+
     {% if not is_debug %}
       {% block ga %}
         {% include 'snippets/google_analytics.html' %}
       {% endblock %}
     {% endif %}
-    <title>
-      {% block title %}
-        Your Page Title
-      {% endblock %}
-    </title>
+    <title>{% block title %}Your Page Title{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static 'ready_saas/css/output.css' %}" />
   </head>

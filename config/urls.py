@@ -114,6 +114,9 @@ urlpatterns = [
     # waitlist
     path('waitlist/', include('waitlist.urls')),
 
+    # blog
+    path('blog/', include('blog.urls')),
+
 
     # Error pages:
     # Uncomment the two lines below for testing purposes only

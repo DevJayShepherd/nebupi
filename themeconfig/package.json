@@ -7,6 +7,7 @@
     "tailwind-build": "tailwindcss -i ../input.css -o ../ready_saas/static/ready_saas/css/output.css --minify"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
     "tailwindcss": "^3.4.1"
   },
   "dependencies": {

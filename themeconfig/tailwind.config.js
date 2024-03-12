@@ -7,6 +7,7 @@ module.exports = {
     'node_modules/preline/dist/*.js',
   ],
   plugins: [
+    require('@tailwindcss/typography'),
     require("daisyui"),
     require('preline/plugin'),
   ],

@@ -1,0 +1,19 @@
+{% extends 'blog/blog_base.html' %}
+
+{% load static %}
+
+{% load markdown_extras %}
+
+{% block title %}{{ blog_post.title }}{% endblock %}
+{% block og_title %}{{ blog_post.title }}{% endblock %}
+
+{% block description %}{{ blog_post.description }}{% endblock %}
+{% block og_description %}{{ blog_post.description }}{% endblock %}
+
+{% block keywords %}{{ blog_post.keywords }}{% endblock %}
+
+{% block og_image %}{{ request.scheme }}://{{ request.get_host }}/path/to/image.png{% endblock %}
+
+{% block blog_content %}
+  <div class="prose lg:prose-xl mx-auto md:mt-20">{{ blog_post.content|markdown_to_html }}</div>
+{% endblock %}
