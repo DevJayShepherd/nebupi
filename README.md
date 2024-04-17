@@ -6,7 +6,7 @@ Hello there! 👋 Welcome to the official GitHub repository for Ready SaaS, your
 
 Looking for detailed guidance on how to get started, configure, and make the most out of Ready SaaS? We've got you covered! Our comprehensive documentation is designed to walk you through every step of the process, from initial setup to advanced customization.
 
-📚 **Access the full documentation here:** [Ready SaaS Documentation]([https://www.readysaas.app/docs/](https://readysaas.gitbook.io/docs))
+📚 **Access the full documentation here:** [Ready SaaS Documentation](https://readysaas.gitbook.io/docs)
 
 Whether you're setting up your local development environment, deploying to production, or configuring subscription plans with Stripe or PayPal, our documentation provides all the information you need.
 
@@ -15,8 +15,8 @@ Whether you're setting up your local development environment, deploying to produ
 If you're eager to dive in, here's how to get started:
 
 1. Clone this repository.
-2. Follow the [Local Setup]([https://www.readysaas.app/docs/local_setup/](https://readysaas.gitbook.io/docs)) instructions in our documentation to get your development environment ready.
-3. Explore the [Deployment Guide]([https://www.readysaas.app/docs/deploy/](https://readysaas.gitbook.io/docs/guides/deploy)) for steps on taking your project live.
+2. Follow the [Local Setup](https://readysaas.gitbook.io/docs) instructions in our documentation to get your development environment ready.
+3. Explore the [Deployment Guide](https://readysaas.gitbook.io/docs/guides/deploy) for steps on taking your project live.
 
 ## Stay Connected
 
