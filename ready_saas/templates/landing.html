@@ -11,7 +11,7 @@
     <div class="relative left-[calc(50%-16rem)] aspect-[1055/678] w-[36.125rem] -translate-x-1/4 -translate-y-1/4 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
   </div>
   <!-- Hero -->
-  <div class="max-w-[85rem] mx-auto px-6 pt-14 lg:px-8">
+  <section class="relative">
     {% if messages %}
       {% for message in messages %}
         <div role="alert" class="alert bg-primary">
@@ -22,49 +22,46 @@
         </div>
       {% endfor %}
     {% endif %}
-    <!-- Grid -->
-    <div class="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center py-40">
-      <div>
-        <h1 class="text-5xl font-black tracking-tighter lg:text-6xl lg:leading-none">
-          Craft Your
-          <br />
-          <span class="text-primary">Value Proposition</span>
-          <br />
-          In This Headline
-        </h1>
-        <p class="mt-3 text-2xl">Expand on the headline benefit with a brief explanation or secondary benefit here.</p>
-
-        <!-- Buttons -->
-
-        <div class="mt-7 grid gap-3 w-full sm:inline-flex">
-          <a class="btn btn-primary text-white" href="#cta-section">
-            CTA goes here<svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </a>
+    <div class="relative z-10 overflow-hidden pt-16">
+      <div class="container px-4 mx-auto">
+        <div class="text-center">
+          <p class="mb-5 text-sm text-primary font-semibold uppercase tracking-px">👋 Say Hello To Speed 🚀</p>
+          <h1 class="mb-9 text-6xl md:text-7xl xl:text-8xl font-black tracking-tighter leading-none">Craft Your Value Proposition In This Headline</h1>
+          <div class="mb-7 md:inline-block">
+            <button class="btn btn-lg btn-primary" type="button">Learn More</button>
+          </div>
+          <div class="mb-16 block">
+            <a class="inline-block" href="#">
+              <div class="flex flex-wrap items-center -m-1.5">
+                <div class="w-auto p-1.5">
+                  <svg width="11" height="13" viewbox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.18003 11.4261C2.8586 12.3918 1 11.448 1 9.81135V3.43865C1 1.80198 2.8586 0.858209 4.18003 1.82387L8.5403 5.01022C9.63359 5.80916 9.63359 7.44084 8.5403 8.23978L4.18003 11.4261Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+                <div class="w-auto p-1.5">
+                  <p class="font-medium">See it in action</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="relative max-w-max mx-auto px-5">
+            <div class="mockup-browser border bg-base-300 mx-auto transform hover:scale-105 transition ease-in-out duration-1000">
+              <div class="mockup-browser-toolbar">
+                <div class="input">https://www.readysaas.app</div>
+              </div>
+              <img class="" src="{% static 'ready_saas/img/dashboard.png' %}" alt="Image Description" />
+            </div>
+          </div>
         </div>
-        <!-- End Buttons -->
       </div>
-      <!-- End Col -->
-
-      <div class="relative ms-4">
-        <img class="w-full rounded-md" src="{% static 'ready_saas/img/illustrations/illustration-3.png' %}" alt="Image Description" />
-      </div>
-      <!-- End Col -->
     </div>
-    <!-- End Grid -->
-  </div>
+  </section>
   <!-- End Hero -->
 
   <!-- Features -->
-  <div class="max-w-[85rem] px-4 py-40 sm:px-6 lg:px-8 lg:py-40 mx-auto">
+  <div class="max-w-[80rem] px-4 py-40 sm:px-6 lg:px-8 lg:py-40 mx-auto">
     <!-- Grid -->
-    <div class="md:grid md:grid-cols-2 md:items-center md:gap-12 xl:gap-32">
-      <div>
-        <img class="rounded-xl hidden md:block" src="{% static 'ready_saas/img/illustrations/illustration-1.png' %}" alt="Image Description" />
-      </div>
-      <!-- End Col -->
-
+    <div class="md:grid md:grid-cols-2 md:items-center gap-10 md:gap-12 xl:gap-32 place-items-center">
       <div class="mt-5 sm:mt-10 lg:mt-0">
         <div class="space-y-6 sm:space-y-8">
           <!-- Title -->
@@ -83,7 +80,7 @@
                 </svg>
               </span>
 
-              <span class="text-sm sm:text-base"><span class="font-bold">Identify a Common Pain Point</span>
+              <span class="text-sm sm:text-base"><span class="font-bold">Identify a Common Pain Point</span></span>
             </li>
 
             <li class="flex space-x-3">
@@ -109,7 +106,10 @@
           <!-- End List -->
         </div>
       </div>
-      <!-- End Col -->
+
+      <div>
+        <img class="mt-10 md:mt-0 rounded-xl max-h-[600px] mx-auto" src="{% static 'ready_saas/img/problem-statement-img.jpeg' %}" alt="Image Description" />
+      </div>
     </div>
     <!-- End Grid -->
   </div>
