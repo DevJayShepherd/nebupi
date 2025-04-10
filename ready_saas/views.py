@@ -6,13 +6,31 @@ from orders.models import Plan
 
 
 def landing(request):
-    plan_tier_1 = Plan.objects.get(tier=1)
-    plan_tier_2 = Plan.objects.get(tier=2)
-    plan_tier_3 = Plan.objects.get(tier=3)
+    # Import the waitlist form and model
+    from waitlist.forms import WaitlistEntryForm
+    from waitlist.models import WaitlistEntry
+    from django.contrib import messages
 
-    return render(request, 'landing.html', {"plan_tier_1": plan_tier_1,
-                                            "plan_tier_2": plan_tier_2,
-                                            "plan_tier_3": plan_tier_3})
+    # Handle form submission
+    if request.method == 'POST':
+        form = WaitlistEntryForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            # Check if the email is already in the waitlist
+            if not WaitlistEntry.objects.filter(email=email).exists():
+                # Add email to the waitlist
+                position = WaitlistEntry.objects.count() + 1
+                WaitlistEntry.objects.create(email=email, position=position)
+                messages.success(request, "Done! You're on the waitlist.")
+            else:
+                # Email already exists, but still show a success message
+                messages.success(request, "You're already on our waitlist!")
+    else:
+        # Create an empty form for GET requests
+        form = WaitlistEntryForm()
+
+    # Render the coming soon page with the form
+    return render(request, 'coming_soon.html', {"form": form})
 
 
 @login_required(login_url='email_login')

@@ -34,7 +34,7 @@ def join_waitlist(request):
                 position = WaitlistEntry.objects.count() + 1
                 WaitlistEntry.objects.create(email=email, position=position)
                 messages.success(request, "Done! You're on the waitlist.")
-                return redirect('join_waitlist')
+                return redirect('landing')
     else:
         form = WaitlistEntryForm()
 
