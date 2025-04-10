@@ -31,10 +31,12 @@ from users.models import User
 from users.tasks import send_email_task
 
 import json
+import os
 import environ
 import requests
 import datetime
 
+# Setup environment variables with fallback to .env file
 env = environ.Env()
 
 
@@ -63,7 +65,8 @@ def get_subscription(subscription_id):
     access_token = get_paypal_access_token()
 
     # PayPal API endpoint to fetch subscription details
-    url =  env('PAYPAL_API_URL') + f"/v1/billing/subscriptions/{subscription_id}"
+    paypal_api_url = os.getenv('PAYPAL_API_URL', env('PAYPAL_API_URL'))
+    url = paypal_api_url + f"/v1/billing/subscriptions/{subscription_id}"
 
     headers = {
         "Content-Type": "application/json",
@@ -189,7 +192,8 @@ def verify_paypal_webhook_event(request):
     headers = request.headers
 
     # PayPal API endpoint for webhook verification
-    url = env('PAYPAL_API_URL') + "/v1/notifications/verify-webhook-signature"
+    paypal_api_url = os.getenv('PAYPAL_API_URL', env('PAYPAL_API_URL'))
+    url = paypal_api_url + "/v1/notifications/verify-webhook-signature"
 
     # Prepare the verification payload
     verification_payload = {
@@ -198,7 +202,7 @@ def verify_paypal_webhook_event(request):
         "cert_url": headers["PAYPAL-CERT-URL"],
         "auth_algo": headers["PAYPAL-AUTH-ALGO"],
         "transmission_sig": headers["PAYPAL-TRANSMISSION-SIG"],
-        "webhook_id": env('PAYPAL_WEBHOOK_ID'),
+        "webhook_id": os.getenv('PAYPAL_WEBHOOK_ID', env('PAYPAL_WEBHOOK_ID')),
         "webhook_event": json.loads(body)
     }
 
@@ -222,7 +226,8 @@ def create_order(request):
     payload = json.loads(request.body)
     product = get_object_or_404(Product, product_id=payload['product_id'])
 
-    url = env('PAYPAL_API_URL') + "/v2/checkout/orders"
+    paypal_api_url = os.getenv('PAYPAL_API_URL', env('PAYPAL_API_URL'))
+    url = paypal_api_url + "/v2/checkout/orders"
     headers = {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + str(get_paypal_access_token())
@@ -248,7 +253,8 @@ def create_order(request):
 
 @login_required
 def capture_order(request, order_id):
-    url = env('PAYPAL_API_URL') + f"/v2/checkout/orders/{order_id}/capture"
+    paypal_api_url = os.getenv('PAYPAL_API_URL', env('PAYPAL_API_URL'))
+    url = paypal_api_url + f"/v2/checkout/orders/{order_id}/capture"
 
     headers = {
         "Content-Type": "application/json",
@@ -292,10 +298,13 @@ def get_paypal_access_token():
     """
 
     # PayPal API endpoint for obtaining an access token
-    url = env('PAYPAL_API_URL') + "/v1/oauth2/token"
+    paypal_api_url = os.getenv('PAYPAL_API_URL', env('PAYPAL_API_URL'))
+    url = paypal_api_url + "/v1/oauth2/token"
 
     # Basic Authentication using client_id and client_secret
-    auth = (env('PAYPAL_CLIENT_ID'), env('PAYPAL_CLIENT_SECRET'))
+    paypal_client_id = os.getenv('PAYPAL_CLIENT_ID', env('PAYPAL_CLIENT_ID'))
+    paypal_client_secret = os.getenv('PAYPAL_CLIENT_SECRET', env('PAYPAL_CLIENT_SECRET'))
+    auth = (paypal_client_id, paypal_client_secret)
 
     headers = {
         "Accept": "application/json",

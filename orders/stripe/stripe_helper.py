@@ -32,16 +32,20 @@ from users.tasks import send_email_task
 from users.utils.sesame_utils import create_login_link
 
 import json
+import os
 import stripe
 import environ
 import datetime
 
+# Setup environment variables with fallback to .env file
 env = environ.Env(
     # set casting, default value
     STRIPE_SECRET_KEY=(str, 'DEFAULT')
 )
 
-stripe.api_key = env('STRIPE_SECRET_KEY')
+# Get STRIPE_SECRET_KEY from system environment first, then fall back to .env file
+stripe_secret_key = os.getenv('STRIPE_SECRET_KEY', env('STRIPE_SECRET_KEY'))
+stripe.api_key = stripe_secret_key
 
 
 def create_checkout_session(request):

@@ -25,4 +25,4 @@ class WaitlistEntryForm(forms.Form):
                              required=True,
                              widget=forms.EmailInput(
                                  attrs={'placeholder': 'Email',
-                                        'class': 'py-3 px-4 block w-full border-gray-200 rounded-lg text-sm font-semibold bg-white focus:border-orange-500 focus:ring-orange-500 focus:ring-2 disabled:opacity-50 disabled:pointer-events-none dark:bg-white dark:text-gray-800 dark:border-orange-300 dark:focus:ring-orange-500 shadow-sm hover:shadow-md transition-all duration-200'}))
+                                        'class': 'form-control'}))

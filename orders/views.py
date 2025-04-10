@@ -27,8 +27,10 @@ from orders.models import Plan, Subscription, Product
 from orders.paypal.paypal_helper import verify_paypal_webhook_event, process_paypal_webhook, create_order, capture_order
 import orders.stripe.stripe_helper as stripe_helper
 
+import os
 import environ
 
+# Setup environment variables with fallback to .env file
 env = environ.Env()
 
 
@@ -47,7 +49,7 @@ def checkout(request, plan_id):
     # Fetch the plan using the provided plan_id
     plan = get_object_or_404(Plan, id=plan_id)
 
-    paypal_client_id = env('PAYPAL_CLIENT_ID')
+    paypal_client_id = os.getenv('PAYPAL_CLIENT_ID', env('PAYPAL_CLIENT_ID'))
 
     context = {
         'plan': plan,
@@ -61,7 +63,7 @@ def checkout(request, plan_id):
 def checkout_product(request, product_id):
     product = get_object_or_404(Product, product_id=product_id)
 
-    paypal_client_id = env('PAYPAL_CLIENT_ID')
+    paypal_client_id = os.getenv('PAYPAL_CLIENT_ID', env('PAYPAL_CLIENT_ID'))
 
     context = {
         'product': product,

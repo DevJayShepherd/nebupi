@@ -57,9 +57,11 @@ from ready_saas.views import landing, dashboard
 # email login
 from sesame.views import LoginView
 
+import os
 import environ
 
 
+# Setup environment variables with fallback to .env file
 env = environ.Env(
     DEBUG=(bool, False)
 )
@@ -124,7 +126,8 @@ urlpatterns = [
     # path('test_500/', TemplateView.as_view(template_name='500.html')),
 ]
 
-if env('DEBUG'):
+debug_value = os.getenv('DEBUG', env('DEBUG'))
+if debug_value == 'on' or debug_value is True:
     urlpatterns += [
         path('__reload__/', include('django_browser_reload.urls')),
     ]

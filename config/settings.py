@@ -27,31 +27,32 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 '''
 
-import environ
 import os
 from celery.schedules import crontab
-
-# https://django-environ.readthedocs.io/en/latest/quickstart.html
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Setup environment variables with fallback to .env file
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
+# Read .env file if it exists
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-# False if not in os.environ because of casting above
-DEBUG = env('DEBUG')
+# Get environment variables from system first, then fall back to .env file
+DEBUG = os.getenv('DEBUG', env('DEBUG')) == 'on' or os.getenv('DEBUG', env('DEBUG')) is True
 
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', env('SECRET_KEY'))
 
 # https://docs.djangoproject.com/en/4.2/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',') if os.getenv('ALLOWED_HOSTS') else env.list('ALLOWED_HOSTS')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#csrf-trusted-origins
-CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS')
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',') if os.getenv('CSRF_TRUSTED_ORIGINS') else env.list('CSRF_TRUSTED_ORIGINS')
 
 
 # Application definition
@@ -144,8 +145,10 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# Use DATABASE_URL from system environment if available, otherwise use the one from .env
+database_url = os.getenv('DATABASE_URL', env('DATABASE_URL'))
 DATABASES = {
-    'default': env.db()
+    'default': env.db_url('DATABASE_URL', default=database_url)
 }
 
 
@@ -213,16 +216,16 @@ if DEBUG:
 else:
     EMAIL_BACKEND = 'anymail.backends.sendgrid.EmailBackend'
     ANYMAIL = {
-        'SENDGRID_API_KEY': env('SENDGRID_API_KEY'),
+        'SENDGRID_API_KEY': os.getenv('SENDGRID_API_KEY', env('SENDGRID_API_KEY')),
     }
 
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
-SERVER_EMAIL = env('SERVER_EMAIL')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', env('DEFAULT_FROM_EMAIL'))
+SERVER_EMAIL = os.getenv('SERVER_EMAIL', env('SERVER_EMAIL'))
 
 
 # celery
 
-CELERY_BROKER_URL = env('REDIS_URL')
+CELERY_BROKER_URL = os.getenv('REDIS_URL', env('REDIS_URL'))
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json', 'msgpack']

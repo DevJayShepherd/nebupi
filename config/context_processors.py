@@ -17,17 +17,20 @@ limitations under the License.
 '''
 
 
+import os
 import environ
 
+# Setup environment variables with fallback to .env file
 env = environ.Env(
     DEBUG=(bool, False),
     GA_TRACKING_ID=(str, ''),
 )
 
-
+# Read from system environment variables first, then fall back to django-environ
 def is_debug(request):
-    return {'is_debug': env('DEBUG')}
+    debug_value = os.getenv('DEBUG', env('DEBUG'))
+    return {'is_debug': debug_value == 'on' or debug_value is True}
 
 
 def ga_tracking_id(request):
-    return {'ga_tracking_id': env('GA_TRACKING_ID')}
+    return {'ga_tracking_id': os.getenv('GA_TRACKING_ID', env('GA_TRACKING_ID'))}

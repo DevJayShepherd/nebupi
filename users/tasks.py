@@ -21,9 +21,11 @@ limitations under the License.
 from django.core.mail import send_mail
 
 from celery import shared_task
+import os
 import environ
 
 
+# Setup environment variables with fallback to .env file
 env = environ.Env()
 
 
@@ -31,6 +33,9 @@ env = environ.Env()
 def send_email_task(subject,
                     message,
                     recipient_list,
-                    from_email='{} <{}>'.format(env("DEFAULT_FROM_NAME"), env("DEFAULT_FROM_EMAIL")),
+                    from_email='{} <{}>'.format(
+                        os.getenv("DEFAULT_FROM_NAME", env("DEFAULT_FROM_NAME")),
+                        os.getenv("DEFAULT_FROM_EMAIL", env("DEFAULT_FROM_EMAIL"))
+                    ),
                     **kwargs):
     send_mail(subject, message, from_email, recipient_list, **kwargs)

@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html class="light" style="scroll-behavior: smooth;">
+<html style="scroll-behavior: smooth;">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,50 +27,138 @@
     <title>{% block title %}Your Page Title{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static 'ready_saas/css/output.css' %}" />
-
-    <!-- Favicons -->
-    <link rel="icon" href="{% static 'ready_saas/images/favicons/favicon.ico' %}" sizes="any">
-    <link rel="icon" href="{% static 'ready_saas/images/favicons/favicon.svg' %}" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="{% static 'ready_saas/images/favicons/apple-touch-icon.png' %}">
-    <link rel="manifest" href="{% static 'ready_saas/images/favicons/site.webmanifest' %}">
   </head>
 
-  <body class="bg-white dark:bg-gray-900 flex flex-col min-h-screen">
+  <body class="bg-base-100 flex flex-col min-h-screen">
     {% block navbar %}
-      <header class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white border-b border-gray-200 text-sm py-3 sm:py-0 dark:bg-gray-800 dark:border-gray-700">
-        <nav class="relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between">
-            <a href="{% url 'landing' %}" class="flex-none text-xl font-semibold dark:text-white">Your Logo</a>
-          </div>
-          <div class="flex items-center gap-x-2 mt-5 sm:mt-0 sm:ps-5">
-            <ul class="flex flex-row items-center gap-2">
+      <div class="navbar">
+        <div class="flex-1">
+          <a href="{% url 'landing' %}" class="btn btn-ghost text-xl">Your Logo</a>
+        </div>
+        <div class="flex-none">
+          <ul class="menu menu-horizontal px-1">
             <li class="hidden sm:block">
-              <button id="theme-toggle" type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                <svg id="theme-toggle-dark-icon" class="hidden w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                  <path d="M17.8 13.75a1 1 0 0 0-.859-.5A7.488 7.488 0 0 1 10.5 6a7.488 7.488 0 0 1 6.44-7.25.998.998 0 0 0 .806-1.494A9.998 9.998 0 0 0 1 6a10.002 10.002 0 0 0 12.344 9.744.998.998 0 0 0 .456-1.994Z"></path>
-                </svg>
-                <svg id="theme-toggle-light-icon" class="hidden w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-11a1 1 0 0 0 1-1V1a1 1 0 0 0-2 0v2a1 1 0 0 0 1 1Zm0 12a1 1 0 0 0-1 1v2a1 1 0 1 0 2 0v-2a1 1 0 0 0-1-1ZM4.343 5.757a1 1 0 0 0 1.414-1.414L4.343 2.929a1 1 0 0 0-1.414 1.414l1.414 1.414Zm11.314 8.486a1 1 0 0 0-1.414 1.414l1.414 1.414a1 1 0 0 0 1.414-1.414l-1.414-1.414ZM4 10a1 1 0 0 0-1-1H1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1Zm15-1h-2a1 1 0 1 0 0 2h2a1 1 0 0 0 0-2ZM4.343 14.243l-1.414 1.414a1 1 0 1 0 1.414 1.414l1.414-1.414a1 1 0 0 0-1.414-1.414ZM14.95 6.05a1 1 0 0 0 .707-.293l1.414-1.414a1 1 0 1 0-1.414-1.414l-1.414 1.414a1 1 0 0 0 .707 1.707Z"></path>
-                </svg>
-                Toggle Theme
-              </button>
+              <details>
+                <summary>Choose Theme</summary>
+                <ul class="p-2 bg-base-100 rounded-t-none z-20">
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Winter" value="winter" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Dark" value="dark" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Cupcake" value="cupcake" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Bumblebee" value="bumblebee" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Custom" value="custom" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Emerald" value="emerald" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Corporate" value="corporate" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Synthwave" value="synthwave" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Retro" value="retro" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Cyberpunk" value="cyberpunk" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Valentine" value="valentine" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Halloween" value="halloween" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Garden" value="garden" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Forest" value="forest" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Aqua" value="aqua" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Lofi" value="lofi" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Pastel" value="pastel" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Fantasy" value="fantasy" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Wireframe" value="wireframe" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Black" value="black" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Luxury" value="luxury" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Dracula" value="dracula" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="CMYK" value="cmyk" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Autumn" value="autumn" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Business" value="business" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Acid" value="acid" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Lemonade" value="lemonade" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Night" value="night" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Coffee" value="coffee" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Light" value="light" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Dim" value="dim" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Nord" value="nord" />
+                  </li>
+                  <li>
+                    <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Sunset" value="sunset" />
+                  </li>
+                  
+                </ul>
+              </details>
             </li>
             {% if user.is_authenticated %}
               <li>
-                <a href="{% url 'logout' %}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-orange-500 text-orange-500 hover:border-orange-600 hover:text-orange-600 disabled:opacity-50 disabled:pointer-events-none dark:border-orange-400 dark:text-orange-400 dark:hover:border-orange-300 dark:hover:text-orange-300">Logout</a>
+                <a href="{% url 'logout' %}" class="btn btn-sm btn-primary mx-2 btn-outline">Logout</a>
               </li>
             {% else %}
               <li>
-                <a href="{% url 'login' %}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-orange-500 text-orange-500 hover:border-orange-600 hover:text-orange-600 disabled:opacity-50 disabled:pointer-events-none dark:border-orange-400 dark:text-orange-400 dark:hover:border-orange-300 dark:hover:text-orange-300">Sign In</a>
+                <a href="{% url 'login' %}" class="btn btn-sm btn-primary mx-2 btn-outline">Sign In</a>
               </li>
               <li>
-                <a href="{% url 'signup' %}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-orange-500 text-white hover:bg-orange-600 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Sign Up</a>
+                <a href="{% url 'signup' %}" class="btn btn-sm btn-primary text-white dark:text-black">Sign Up</a>
               </li>
             {% endif %}
           </ul>
         </div>
-        </nav>
-      </header>
+      </div>
     {% endblock %}
 
     {% block content %}
@@ -127,50 +215,5 @@
         <!-- End Grid -->
       </footer>
     {% endblock %}
-    <script>
-      // Function to toggle dark mode
-      function toggleDarkMode() {
-        // Check if dark mode is enabled
-        if (document.documentElement.classList.contains('dark')) {
-          // If enabled, disable it
-          document.documentElement.classList.remove('dark');
-          document.documentElement.classList.add('light');
-          localStorage.setItem('color-theme', 'light');
-          document.getElementById('theme-toggle-light-icon').classList.add('hidden');
-          document.getElementById('theme-toggle-dark-icon').classList.remove('hidden');
-        } else {
-          // If disabled, enable it
-          document.documentElement.classList.remove('light');
-          document.documentElement.classList.add('dark');
-          localStorage.setItem('color-theme', 'dark');
-          document.getElementById('theme-toggle-dark-icon').classList.add('hidden');
-          document.getElementById('theme-toggle-light-icon').classList.remove('hidden');
-        }
-      }
-
-      // Add event listener to the toggle button
-      document.getElementById('theme-toggle').addEventListener('click', toggleDarkMode);
-
-      // On page load, check user preference
-      document.addEventListener('DOMContentLoaded', function() {
-        // Check for saved theme preference or use the system preference
-        const darkMode = localStorage.getItem('color-theme') === 'dark' || 
-                        (!localStorage.getItem('color-theme') && 
-                          window.matchMedia('(prefers-color-scheme: dark)').matches);
-
-        // If dark mode is preferred, add the 'dark' class to the html element
-        if (darkMode) {
-          document.documentElement.classList.remove('light');
-          document.documentElement.classList.add('dark');
-          document.getElementById('theme-toggle-dark-icon').classList.add('hidden');
-          document.getElementById('theme-toggle-light-icon').classList.remove('hidden');
-        } else {
-          document.documentElement.classList.remove('dark');
-          document.documentElement.classList.add('light');
-          document.getElementById('theme-toggle-light-icon').classList.add('hidden');
-          document.getElementById('theme-toggle-dark-icon').classList.remove('hidden');
-        }
-      });
-    </script>
   </body>
 </html>
