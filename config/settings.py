@@ -28,6 +28,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 '''
 
 import os
+import dotenv
 from celery.schedules import crontab
 import environ
 
@@ -42,7 +43,7 @@ env = environ.Env(
 )
 
 # Read .env file if it exists
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+dotenv_path = os.path.join(BASE_DIR, '.env')
 
 # Get environment variables from system first, then fall back to .env file
 DEBUG = os.getenv('DEBUG', env('DEBUG')) == 'on' or os.getenv('DEBUG', env('DEBUG')) is True
