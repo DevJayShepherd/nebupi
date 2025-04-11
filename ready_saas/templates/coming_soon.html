@@ -1,0 +1,208 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Coming soon - Join our waitlist to be the first to know when we launch." />
+  <meta name="keywords" content="coming soon, waitlist, launch" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Coming Soon - Join Waitlist" />
+  <meta property="og:description" content="We're working on something amazing. Join our waitlist to be the first to know when we launch." />
+
+  <title>Coming Soon - Join Waitlist</title>
+
+  <link rel="stylesheet" href="{% static 'ready_saas/css/output.css' %}" />
+</head>
+
+<body class="bg-slate-50 flex flex-col min-h-screen">
+  <!-- Hero -->
+  <div class="relative overflow-hidden before:absolute before:top-0 before:start-1/2 before:bg-[url('https://preline.co/assets/svg/examples/polygon-bg-element.svg')] before:bg-no-repeat before:bg-top before:bg-cover before:size-full before:z-[-1] before:transform before:-translate-x-1/2">
+    <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
+      <!-- Messages -->
+      {% if messages %}
+        <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 space-y-3 flex flex-col items-center">
+          {% for message in messages %}
+            {% if message.tags == 'success' %}
+              <!-- Success Toast -->
+              <div class="max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg" role="alert" tabindex="-1" aria-labelledby="toast-success-label">
+                <div class="flex p-4">
+                  <div class="shrink-0">
+                    <svg class="shrink-0 size-4 text-teal-500 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+                    </svg>
+                  </div>
+                  <div class="ms-3">
+                    <p id="toast-success-label" class="text-sm text-gray-700">
+                      {{ message }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- End Success Toast -->
+            {% elif message.tags == 'error' %}
+              <!-- Error Toast -->
+              <div class="max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg" role="alert" tabindex="-1" aria-labelledby="toast-error-label">
+                <div class="flex p-4">
+                  <div class="shrink-0">
+                    <svg class="shrink-0 size-4 text-red-500 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"></path>
+                    </svg>
+                  </div>
+                  <div class="ms-3">
+                    <p id="toast-error-label" class="text-sm text-gray-700">
+                      {{ message }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- End Error Toast -->
+            {% elif message.tags == 'warning' %}
+              <!-- Warning Toast -->
+              <div class="max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg" role="alert" tabindex="-1" aria-labelledby="toast-warning-label">
+                <div class="flex p-4">
+                  <div class="shrink-0">
+                    <svg class="shrink-0 size-4 text-yellow-500 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"></path>
+                    </svg>
+                  </div>
+                  <div class="ms-3">
+                    <p id="toast-warning-label" class="text-sm text-gray-700">
+                      {{ message }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- End Warning Toast -->
+            {% else %}
+              <!-- Normal Toast -->
+              <div class="max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg" role="alert" tabindex="-1" aria-labelledby="toast-normal-label">
+                <div class="flex p-4">
+                  <div class="shrink-0">
+                    <svg class="shrink-0 size-4 text-blue-500 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path>
+                    </svg>
+                  </div>
+                  <div class="ms-3">
+                    <p id="toast-normal-label" class="text-sm text-gray-700">
+                      {{ message }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- End Normal Toast -->
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+      <!-- End Messages -->
+
+      <!-- Logo -->
+      <div class="flex justify-center mb-8">
+        <img src="{% static 'ready_saas/images/nebupi-logo-final.png' %}" alt="Nebupi Logo" class="h-8">
+      </div>
+      <!-- End Logo -->
+
+      <!-- Title -->
+      <div class="mt-5 max-w-2xl text-center mx-auto">
+        <h1 class="block font-bold text-gray-800 text-4xl md:text-5xl lg:text-6xl">
+          Coming
+          <span class="bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600 text-transparent font-extrabold">Soon</span>
+        </h1>
+      </div>
+      <!-- End Title -->
+
+      <div class="mt-5 max-w-3xl text-center mx-auto">
+        <p class="text-lg text-gray-600">Nebupi is developing a collection of modern applications for the maritime industry, combining shipping data with AI and machine learning to transform the future of sea transport. Join our waitlist to be the first to know when we launch.</p>
+      </div>
+
+      <!-- Waitlist Form -->
+      <div class="mt-10 max-w-xl mx-auto">
+        <form method="post" action="." class="flex flex-col sm:flex-row gap-3">
+          {% csrf_token %}
+          <div class="flex-grow relative">
+            <input type="email" name="email" placeholder="Enter your email" required class="py-3 px-4 ps-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-orange-500 focus:ring-orange-500 disabled:opacity-50 disabled:pointer-events-none bg-white text-gray-900">
+            <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-4">
+              <svg class="flex-shrink-0 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+          </div>
+          <button type="submit" class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-orange-500 text-white hover:bg-orange-600 disabled:opacity-50 disabled:pointer-events-none">
+            Join Waitlist
+          </button>
+        </form>
+      </div>
+      <!-- End Waitlist Form -->
+
+      <!-- Features -->
+      <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <!-- Card -->
+        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+          <div class="h-52 flex flex-col justify-center items-center bg-orange-50 rounded-t-xl">
+            <svg class="size-10 text-orange-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13 15v2"/>
+              <path d="M10 15v2"/>
+            </svg>
+          </div>
+          <div class="p-4 md:p-6">
+            <h3 class="text-xl font-semibold text-gray-800">Maritime Solutions</h3>
+            <p class="mt-3 text-gray-600">Modern applications tailored for the maritime industry, leveraging AI to analyze shipping data and solve the unique challenges of sea transport.</p>
+          </div>
+        </div>
+        <!-- End Card -->
+
+        <!-- Card -->
+        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+          <div class="h-52 flex flex-col justify-center items-center bg-blue-50 rounded-t-xl">
+            <svg class="size-10 text-blue-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <div class="p-4 md:p-6">
+            <h3 class="text-xl font-semibold text-gray-800">Fleet Management</h3>
+            <p class="mt-3 text-gray-600">Streamline operations with machine learning-powered analytics that transform shipping data into actionable insights for optimal fleet performance.</p>
+          </div>
+        </div>
+        <!-- End Card -->
+
+        <!-- Card -->
+        <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+          <div class="h-52 flex flex-col justify-center items-center bg-gray-50 rounded-t-xl">
+            <svg class="size-10 text-gray-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="p-4 md:p-6">
+            <h3 class="text-xl font-semibold text-gray-800">Secure & Compliant</h3>
+            <p class="mt-3 text-gray-600">AI-driven security and compliance systems that analyze shipping data to ensure adherence to maritime regulations and enhance safety at sea.</p>
+          </div>
+        </div>
+        <!-- End Card -->
+      </div>
+      <!-- End Features -->
+    </div>
+  </div>
+  <!-- End Hero -->
+
+  <!-- Footer -->
+  <footer class="mt-auto py-5 bg-slate-100">
+    <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-3">
+        <div class="flex items-center">
+          <img src="{% static 'ready_saas/images/nebupi-logo-final.png' %}" alt="Nebupi Logo" class="h-8">
+        </div>
+        <div class="text-center">
+          <p class="text-sm text-gray-600">© {% now "Y" %} Nebupi. All rights reserved.</p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-500">Maritime solutions for the modern world</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+</body>
+</html>

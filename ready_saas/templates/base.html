@@ -33,7 +33,9 @@
     {% block navbar %}
       <div class="navbar">
         <div class="flex-1">
-          <a href="{% url 'landing' %}" class="btn btn-ghost text-xl">Your Logo</a>
+          <a href="{% url 'landing' %}" class="btn btn-ghost text-xl">
+            <img src="{% static 'ready_saas/images/nebupi-logo-final.svg' %}" alt="Nebupi Logo" class="h-8">
+          </a>
         </div>
         <div class="flex-none">
           <ul class="menu menu-horizontal px-1">
@@ -140,7 +142,7 @@
                   <li>
                     <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Sunset" value="sunset" />
                   </li>
-                  
+
                 </ul>
               </details>
             </li>
@@ -170,7 +172,9 @@
         <!-- Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-5 text-center">
           <div>
-            <a class="flex-none text-xl font-semibold" href="#" aria-label="Brand">Your Logo</a>
+            <a class="flex-none text-xl font-semibold" href="#" aria-label="Brand">
+              <img src="{% static 'ready_saas/images/nebupi-logo-final.svg' %}" alt="Nebupi Logo" class="h-8">
+            </a>
           </div>
           <!-- End Col -->
 
