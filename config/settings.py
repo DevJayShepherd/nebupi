@@ -44,16 +44,25 @@ env = environ.Env(
 
 # Read .env file if it exists
 dotenv_path = os.path.join(BASE_DIR, '.env')
+if os.path.exists(dotenv_path):
+    dotenv.load_dotenv(dotenv_path)
 
 # Get environment variables from system first, then fall back to .env file
-DEBUG = os.getenv('DEBUG', env('DEBUG')) == 'on' or os.getenv('DEBUG', env('DEBUG')) is True
+DEBUG = os.getenv('DEBUG', env('DEBUG', default='off')) == 'on' or os.getenv('DEBUG', env('DEBUG', default=False)) is True
 
-SECRET_KEY = os.getenv('SECRET_KEY', env('SECRET_KEY'))
+# Use a default SECRET_KEY if not provided in environment variables
+# This is a fallback for development only, in production always set SECRET_KEY in environment variables
+DEFAULT_SECRET_KEY = 'django-insecure-default-key-for-development-only-change-in-production'
+SECRET_KEY = os.getenv('SECRET_KEY', env('SECRET_KEY', default=DEFAULT_SECRET_KEY))
 
 # https://docs.djangoproject.com/en/4.2/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',') if os.getenv('ALLOWED_HOSTS') else env.list('ALLOWED_HOSTS')
+# Default to localhost and 127.0.0.1 if no ALLOWED_HOSTS is provided
+DEFAULT_ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',') if os.getenv('ALLOWED_HOSTS') else env.list('ALLOWED_HOSTS', default=DEFAULT_ALLOWED_HOSTS)
 # https://docs.djangoproject.com/en/4.2/ref/settings/#csrf-trusted-origins
-CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',') if os.getenv('CSRF_TRUSTED_ORIGINS') else env.list('CSRF_TRUSTED_ORIGINS')
+# Default to empty list if no CSRF_TRUSTED_ORIGINS is provided
+DEFAULT_CSRF_TRUSTED_ORIGINS = []
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',') if os.getenv('CSRF_TRUSTED_ORIGINS') else env.list('CSRF_TRUSTED_ORIGINS', default=DEFAULT_CSRF_TRUSTED_ORIGINS)
 
 
 # Application definition
@@ -147,7 +156,9 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # Use DATABASE_URL from system environment if available, otherwise use the one from .env
-database_url = os.getenv('DATABASE_URL', env('DATABASE_URL'))
+# Default to SQLite if no DATABASE_URL is provided
+DEFAULT_DATABASE_URL = 'sqlite:///db.sqlite3'
+database_url = os.getenv('DATABASE_URL', env('DATABASE_URL', default=DEFAULT_DATABASE_URL))
 DATABASES = {
     'default': env.db_url('DATABASE_URL', default=database_url)
 }
@@ -217,16 +228,18 @@ if DEBUG:
 else:
     EMAIL_BACKEND = 'anymail.backends.sendgrid.EmailBackend'
     ANYMAIL = {
-        'SENDGRID_API_KEY': os.getenv('SENDGRID_API_KEY', env('SENDGRID_API_KEY')),
+        'SENDGRID_API_KEY': os.getenv('SENDGRID_API_KEY', env('SENDGRID_API_KEY', default='')),
     }
 
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', env('DEFAULT_FROM_EMAIL'))
-SERVER_EMAIL = os.getenv('SERVER_EMAIL', env('SERVER_EMAIL'))
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', env('DEFAULT_FROM_EMAIL', default='noreply@example.com'))
+SERVER_EMAIL = os.getenv('SERVER_EMAIL', env('SERVER_EMAIL', default='server@example.com'))
 
 
 # celery
 
-CELERY_BROKER_URL = os.getenv('REDIS_URL', env('REDIS_URL'))
+# Default to a local Redis instance if no REDIS_URL is provided
+DEFAULT_REDIS_URL = 'redis://localhost:6379'
+CELERY_BROKER_URL = os.getenv('REDIS_URL', env('REDIS_URL', default=DEFAULT_REDIS_URL))
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json', 'msgpack']
