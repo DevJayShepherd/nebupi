@@ -10,6 +10,7 @@ click-plugins==1.1.1
 click-repl==0.3.0
 cron-descriptor==1.4.5
 Django==4.2.5
+django-anymail==13.0
 django-autoslug==1.9.9
 django-browser-reload==1.12.1
 django-celery-beat==2.5.0
